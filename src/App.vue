@@ -2,7 +2,9 @@
 </script>
 
 <template>
-  Hello poptin
+  <p class="bg-primary">
+    Hello poptin
+  </p>
 </template>
 
 <style>
