@@ -6,14 +6,31 @@
           All the text and elements in this popup should be editable and
           dragable
         </p>
+        <DropDownOpt
+          label="Select color"
+          :values="['info', 'danger', 'dark', 'warning']"
+          :textOptionsType="false"
+          :selectedOpt="selectedOpt"
+          @selectOption="selectedOpt = $event"
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import DropDownOpt from "./DropDownOpt.vue";
 export default {
   name: "ViewPage",
+  data() {
+    return {
+      textLabel: "text",
+      selectedOpt: '14px'
+    };
+  },
+  components: {
+    DropDownOpt,
+  },
 };
 </script>
 
