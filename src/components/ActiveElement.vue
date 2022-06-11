@@ -1,30 +1,43 @@
 <template>
-  <div class="container active-element">
+  <div class="container active-element" @click="activate">
     <div class="opts">
-      <i :class="{'active': isActive}" class="bi bi-grip-horizontal " role="button"></i>
-      <i :class="{'active': isActive}" class="bi bi-x" role="button" @click="close"></i>
+      <i :class="{'active': id == activeElementId}" class="bi bi-grip-horizontal " role="button"></i>
+      <i :class="{'active': id == activeElementId}" class="bi bi-x" role="button" @click="close"></i>
     </div>
-    <div class="active">
+    <div class="slot" :class="{'active': id == activeElementId}">
       <slot />
     </div>
   </div>
 </template>
 
 <script>
+import {mapMutations, mapState} from "vuex";
+
 export default {
   name: "ActiveElement",
 
   props:{
-    isActive: {
-      type: Boolean,
-      default: false,
+    id: {
+      type: Number,
+      default: 0,
     }
   },
 
+  computed: {
+    ...mapState(["activeElementId"]),
+  },
+
   methods: {
+    ...mapMutations(["changeActiveElementId"]),
+
     close() {
       this.$emit("close");
     },
+
+    activate() {
+      console.log(this.id);
+      this.changeActiveElementId(this.id);
+    }
   }
 };
 </script>
@@ -42,7 +55,8 @@ export default {
 
 i.bi {
   color: #e0e8ff;
-  .active {
+
+  &.active {
     color: cyan;
   }
 }
@@ -52,10 +66,15 @@ i.bi {
   justify-content: space-between;
 }
 
-.active {
+.slot {
   //background-color: white;
   padding: 5px;
   border-radius: 12px;
   border: 1px dashed #e0e8ff;
+
+  &.active {
+    border-width: 2px;
+    border-color: cyan;
+  }
 }
 </style>

@@ -8,19 +8,13 @@
         </p>
         <div>
           <template v-for="element in newPopup.children">
-            <ActiveElement v-if="element.type === 'button'" :key="element.id"
-                           :is-active="element.id === activeElementId"
-                           @close="removeTemplateElement(element.id)">
+            <ActiveElement v-if="element.type === 'button'" :key="element.id" :id="element.id" @close="removeTemplateElement(element.id)">
               <BaseButton />
             </ActiveElement>
-            <ActiveElement v-else-if="element.type === 'input'"
-                           :is-active="element.id === activeElementId"
-                           @close="removeTemplateElement(element.id)">
+            <ActiveElement v-else-if="element.type === 'input'" :id="element.id" @close="removeTemplateElement(element.id)">
               <BaseInput />
             </ActiveElement>
-            <ActiveElement v-else-if="element.type === 'text'"
-                           :is-active="element.id === activeElementId"
-                           @close="removeTemplateElement(element.id)">
+            <ActiveElement v-else-if="element.type === 'text'" :id="element.id" @close="removeTemplateElement(element.id)">
               <TextLabel :text-value="element.label" />
             </ActiveElement>
           </template>
