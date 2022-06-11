@@ -6,13 +6,19 @@
           All the text and elements in this popup should be editable and
           dragable
         </p>
-        <DropDownOpt
+        <div style="max-width: 300px" class="mx-auto">
+          <ActiveElement>
+            <BaseButton />
+          </ActiveElement>
+        </div>
+        <!-- <DropDownOpt
           label="Select color"
           :values="['info', 'danger', 'dark', 'warning']"
           :textOptionsType="false"
           :selectedOpt="selectedOpt"
           @selectOption="selectedOpt = $event"
-        />
+        /> -->
+
       </div>
     </div>
   </div>
@@ -20,6 +26,8 @@
 
 <script>
 import DropDownOpt from "./DropDownOpt.vue";
+import BaseButton from './BaseButton.vue';
+import ActiveElement from './ActiveElement.vue';
 export default {
   name: "ViewPage",
   data() {
@@ -30,6 +38,8 @@ export default {
   },
   components: {
     DropDownOpt,
+    BaseButton,
+    ActiveElement
   },
 };
 </script>
