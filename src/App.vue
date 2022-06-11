@@ -14,7 +14,7 @@
         <div class="header-label">Components</div>
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link d-flex flex-row align-items-center" href="#" @click.prevent="addStarDivider">
+            <a class="nav-link d-flex flex-row align-items-center" href="#" @click.prevent="newStarDivider">
               <div class="me-auto">Star Divider</div>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
@@ -22,7 +22,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link d-flex flex-row align-items-center" href="#" @click.prevent="addButton">
+            <a class="nav-link d-flex flex-row align-items-center" href="#" @click.prevent="newButton">
               <div class="me-auto">Button</div>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
@@ -30,7 +30,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link d-flex flex-row align-items-center" href="#" @click.prevent="addText">
+            <a class="nav-link d-flex flex-row align-items-center" href="#" @click.prevent="newText">
               <div class="me-auto">Text</div>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
@@ -38,7 +38,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link d-flex flex-row align-items-center" href="#" @click.prevent="addInputField">
+            <a class="nav-link d-flex flex-row align-items-center" href="#" @click.prevent="newInputField">
               <div class="me-auto">Input Field</div>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
@@ -59,6 +59,7 @@
 
 <script>
 import ViewPage from './components/ViewPage.vue';
+import {mapState, mapMutations} from "vuex";
 export default {
   components: {
     ViewPage,
@@ -66,55 +67,15 @@ export default {
 
   data() {
     return {
-      newPopup: {
-        background: "#e85e5b",
-        children: [
-
-        ]
-      }
     }
   },
 
+  computed: {
+    ...mapState(["newPopup"]),
+  },
+
   methods: {
-    addStarDivider() {
-      this.newPopup.children.push({
-        id: this.newPopup.children.length+1,
-        type: "star",
-        color: "#a83c3b"
-      });
-    },
-
-    addButton() {
-      this.newPopup.children.push({
-        id: this.newPopup.children.length+1,
-        type: "button",
-        backgroundColor: "#dc3545",
-        textColor: "white",
-        label: "Button",
-        truncate: false,
-      });
-    },
-
-    addText() {
-      this.newPopup.children.push({
-        id: this.newPopup.children.length+1,
-        type: "text",
-        color: "#ffffff",
-        label: "Text",
-        size: "m",
-      });
-    },
-
-    addInputField() {
-      this.newPopup.children.push({
-        id: this.newPopup.children.length+1,
-        type: "input",
-        color: "#ffffff",
-        placeholder: "Type your value",
-        size: "m",
-      });
-    },
-
+    ...mapMutations(['newStarDivider', "newButton", "newText", "newInputField"]),
   }
 };
 </script>
