@@ -1,6 +1,6 @@
 <template>
   <div style="max-width: 300px" class="mx-auto">
-    <input type="text" class="base-input" :placeholder="placeHolder" />
+    <input type="text" class="base-input" :placeholder="placeholder" />
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
   name: "BaseInput",
   props: {
-    placeHolder: {
+    placeholder: {
       type: String,
       default: "Email",
     },
