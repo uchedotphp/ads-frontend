@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="max-width: 300px" class="mx-auto">
     <input type="text" class="base-input" :placeholder="placeHolder" />
   </div>
 </template>

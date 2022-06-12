@@ -18,7 +18,7 @@ export default {
     },
     labelColor: {
       type: String,
-      default: "primary",
+      default: "light",
     },
   },
   data() {

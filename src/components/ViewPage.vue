@@ -4,20 +4,28 @@
       <div class="inner-content">
         <p>
           All the text and elements in this popup should be editable and
-          dragable
+          draggable
         </p>
-        <div style="max-width: 300px" class="mx-auto">
-          <ActiveElement>
-            <BaseButton />
-          </ActiveElement>
+        <div>
+          <template v-for="element in newPopup.children">
+            <ActiveElement v-if="element.type === 'button'" :key="element.id" :id="element.id" @close="removeTemplateElement(element.id)">
+              <BaseButton />
+            </ActiveElement>
+            <ActiveElement v-else-if="element.type === 'input'" :id="element.id" @close="removeTemplateElement(element.id)">
+              <BaseInput />
+            </ActiveElement>
+            <ActiveElement v-else-if="element.type === 'text'" :id="element.id" @close="removeTemplateElement(element.id)">
+              <TextLabel :text-value="element.label" />
+            </ActiveElement>
+          </template>
         </div>
-        <!-- <DropDownOpt
-          label="Select color"
-          :values="['info', 'danger', 'dark', 'warning']"
-          :textOptionsType="false"
-          :selectedOpt="selectedOpt"
-          @selectOption="selectedOpt = $event"
-        /> -->
+        <!--         <DropDownOpt-->
+        <!--          label="Select color"-->
+        <!--          :values="['info', 'danger', 'dark', 'warning']"-->
+        <!--          :textOptionsType="false"-->
+        <!--          :selectedOpt="selectedOpt"-->
+        <!--          @selectOption="selectedOpt = $event"-->
+        <!--        />-->
 
       </div>
     </div>
@@ -28,6 +36,10 @@
 import DropDownOpt from "./DropDownOpt.vue";
 import BaseButton from './BaseButton.vue';
 import ActiveElement from './ActiveElement.vue';
+import {mapMutations, mapState} from "vuex";
+import BaseInput from "./BaseInput.vue";
+import TextLabel from "./TextLabel.vue";
+
 export default {
   name: "ViewPage",
   data() {
@@ -37,10 +49,18 @@ export default {
     };
   },
   components: {
+    TextLabel,
+    BaseInput,
     DropDownOpt,
     BaseButton,
     ActiveElement
   },
+  computed: {
+    ...mapState(["activeElementId", "newPopup"]),
+  },
+  methods: {
+    ...mapMutations(["removeTemplateElement"]),
+  }
 };
 </script>
 
