@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "BaseInput",
+  name: "TemplateInput",
   props: {
     placeholder: {
       type: String,

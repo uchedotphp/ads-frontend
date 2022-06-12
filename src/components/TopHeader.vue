@@ -10,9 +10,9 @@
       <h2 class="title ms-2">Poptin test</h2>
     </div>
     <div class="col me-auto">
-      <BaseButton buttonSize="sm" class="save-template">
+      <TemplateButton buttonSize="sm" class="save-template">
         Save template
-      </BaseButton>
+      </TemplateButton>
       <a href="#" class="preview-link">
         <i class="bi bi-folder-symlink me-1"></i>
         Preview in browser
@@ -25,11 +25,11 @@
 </template>
 
 <script>
-import BaseButton from "./BaseButton.vue";
+import TemplateButton from "./TemplateButton.vue";
 export default {
   name: "TopHeader",
   components: {
-    BaseButton,
+    TemplateButton,
   },
 };
 </script>

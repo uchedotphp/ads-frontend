@@ -1,26 +1,36 @@
 <template>
   <button
-    type="button"
-    :class="[
-      btnStyles,
-      `base-btn btn btn-${bgColor} btn-${buttonSize} text-${textColor}`,
-    ]"
-  >
-    <slot>
-      {{ buttonLabel }}
-    </slot>
+      class="base-btn btn"
+      :style="`color: ${textColor}; background-color: ${bgColor}; font-size: ${fontSize}`"
+      type="button">
+    <slot></slot>
   </button>
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
-  name: "BaseButton",
+  name: "TemplateButton",
   computed: {
+    ...mapGetters({
+      getActiveTemplateElement: "getActiveTemplateElement",
+    }),
+
     btnStyles() {
       return {
         "text-truncate": this.truncateText,
       };
     },
+
+    fontSize() {
+      if (this.size == 'sm') {
+        return '14px';
+      } else if (this.size == 'lg') {
+        return '20px';
+      }
+      return '16px';
+    }
   },
   props: {
     truncateText: {
@@ -39,9 +49,9 @@ export default {
       type: String,
       default: "secondary",
     },
-    buttonSize: {
+    size: {
       type: String,
-      default: "lg",
+      default: "md",
     },
   },
 };
@@ -53,30 +63,5 @@ export default {
   border-radius: 12px;
   padding-block: 15px;
   font-weight: 900;
-
-  &.text-primary {
-    color: #0d6efd;
-  }
-  &.text-secondary {
-    color: #adb5bd;
-  }
-  &.text-success {
-    color: #198754;
-  }
-  &.text-danger {
-    color: #dc3545;
-  }
-  &.text-warning {
-    color: #ffc107;
-  }
-  &.text-info {
-    color: #0dcaf0;
-  }
-  &.text-light {
-    color: #ffffff;
-  }
-  &.text-dark {
-    color: #000000;
-  }
 }
 </style>

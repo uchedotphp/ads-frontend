@@ -2,29 +2,20 @@
   <div class="preview-screen">
     <div class="card mx-auto">
       <div class="inner-content">
-        <p>
+        <p v-if="newPopup.children.length === 0">
           All the text and elements in this popup should be editable and
           draggable
         </p>
         <div>
           <template v-for="element in newPopup.children">
-            <ActiveElement
-              v-if="element.type === 'button'"
-              :key="element.id"
-              :id="element.id"
-              @close="removeTemplateElement(element.id)"
-            >
-              <BaseButton />
+            <ActiveElement v-if="element.type === 'button'" :key="element.id" :id="element.id" @close="removeTemplateElement(element.id)">
+              <TemplateButton :bg-color="element.backgroundColor" :text-color="element.color" :size="element.size">{{ element.label }}</TemplateButton>
             </ActiveElement>
             <ActiveElement v-else-if="element.type === 'input'" :id="element.id" @close="removeTemplateElement(element.id)">
-              <BaseInput :placeholder="element.placeholder" />
+              <TemplateInput :placeholder="element.placeholder" />
             </ActiveElement>
-            <ActiveElement
-              v-else-if="element.type === 'text'"
-              :id="element.id"
-              @close="removeTemplateElement(element.id)"
-            >
-              <TextLabel :text-value="element.label" />
+            <ActiveElement v-else-if="element.type === 'text'" :id="element.id" @close="removeTemplateElement(element.id)">
+              <TemplateText :content="element.text" :size="element.size" :color="element.color" />
             </ActiveElement>
           </template>
         </div>
@@ -35,11 +26,11 @@
 
 <script>
 import DropDownOpt from "./DropDownOpt.vue";
-import BaseButton from "./BaseButton.vue";
+import {mapMutations, mapState} from "vuex";
+import TemplateInput from "./TemplateInput.vue";
+import TemplateText from "./TemplateText.vue";
+import TemplateButton from './TemplateButton.vue';
 import ActiveElement from "./ActiveElement.vue";
-import { mapMutations, mapState } from "vuex";
-import BaseInput from "./BaseInput.vue";
-import TextLabel from "./TextLabel.vue";
 
 export default {
   name: "PreviewScreen",
@@ -50,10 +41,10 @@ export default {
     };
   },
   components: {
-    TextLabel,
-    BaseInput,
+    TemplateText,
+    TemplateInput,
     DropDownOpt,
-    BaseButton,
+    TemplateButton,
     ActiveElement,
   },
   computed: {
