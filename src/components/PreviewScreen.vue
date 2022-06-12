@@ -67,7 +67,6 @@ export default {
 
 <style lang="scss" scoped>
 .preview-screen {
-  min-height: 100vh;
   display: grid;
   place-content: center;
   @media (max-width: 767.98px) {
