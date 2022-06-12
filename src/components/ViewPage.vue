@@ -12,7 +12,7 @@
               <BaseButton />
             </ActiveElement>
             <ActiveElement v-else-if="element.type === 'input'" :id="element.id" @close="removeTemplateElement(element.id)">
-              <BaseInput />
+              <BaseInput :placeholder="element.placeholder" />
             </ActiveElement>
             <ActiveElement v-else-if="element.type === 'text'" :id="element.id" @close="removeTemplateElement(element.id)">
               <TextLabel :text-value="element.label" />

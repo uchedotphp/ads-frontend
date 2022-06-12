@@ -30,7 +30,9 @@
     <div class="edit-input-options" v-if="getActiveTemplateElement && getActiveTemplateElement.type === 'input'">
       <div class="mt-5">
         <div class="header-label">Placeholder</div>
-        <input class="form-control" id="exampleFormControlTextarea1" />
+        <input class="form-control" id="exampleFormControlTextarea1"
+               v-model="getActiveTemplateElement.placeholder"
+               @input="updateElementPlaceholder" />
       </div>
     </div>
     <div class="edit-button-options" v-if="getActiveTemplateElement && getActiveTemplateElement.type === 'button'">
@@ -81,7 +83,9 @@ export default {
     }),
   },
 
-  methods: {}
+  methods: {
+    updateElementPlaceholder(e) {}
+  }
 }
 </script>
 
