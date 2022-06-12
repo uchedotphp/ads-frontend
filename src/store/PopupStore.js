@@ -6,18 +6,15 @@ const store = createStore({
         return {
             activeElementId: 0,
             newPopup: {
-                background: "#e85e5b",
+                backgroundColor: "#e85e5b",
                 children: []
             }
         }
     },
     getters: {
         getActiveTemplateElement(state) {
-            const filteredChildren = state.newPopup.children.filter(child => {
-                return child.id === state.activeElementId;
-            });
-
-            return filteredChildren.length > 0 ? filteredChildren[0] : null;
+            const index = state.newPopup.children.findIndex(e => e.id === state.activeElementId);
+            return state.newPopup.children[index] ?? null;
         }
     },
     mutations: {
@@ -34,7 +31,7 @@ const store = createStore({
                 id: state.newPopup.children.length+1,
                 type: "button",
                 backgroundColor: "#dc3545",
-                textColor: "white",
+                color: "#fff",
                 label: "Button",
                 truncate: false,
             });
@@ -45,7 +42,7 @@ const store = createStore({
                 id: state.newPopup.children.length+1,
                 type: "text",
                 color: "#ffffff",
-                label: "Type your text here",
+                text: "Type your text here",
                 size: "m",
             });
         },
@@ -54,9 +51,9 @@ const store = createStore({
             state.newPopup.children.push({
                 id: state.newPopup.children.length+1,
                 type: "input",
-                color: "#ffffff",
+                backgroundColor: "#fff",
+                color: "#303040",
                 placeholder: "Type your value",
-                size: "m",
             });
         },
 
@@ -74,6 +71,27 @@ const store = createStore({
             if (state.activeElementId === id) {
                 this.commit("changeActiveElementId", 0);
             }
+        },
+
+        updateActiveElementProperty(state, d) {
+            // console.log(d.key, d.value);
+            this.commit("updateElementProperty", {...d, id: state.activeElementId});
+        },
+
+        updateElementProperty(state, data) {
+            const index = state.newPopup.children.findIndex(e => e.id === data.id);
+            const element = this.state.newPopup.children[index];
+
+            console.log("index >> ", index);
+            console.log("element >> ", element);
+            console.log({[data['key']]: data['value']});
+
+            const a = state.newPopup.children.splice(index, 1, {
+                ...element,
+                [data['key']]: data['value'],
+            });
+
+            console.log(a);
         },
 
         reIndex(state) {

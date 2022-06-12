@@ -2,20 +2,20 @@
   <div class="" style="min-height: 100vh; display: grid; place-content: center">
     <div class="card mx-auto">
       <div class="inner-content">
-        <p>
+        <p v-if="newPopup.children.length === 0">
           All the text and elements in this popup should be editable and
           draggable
         </p>
         <div>
           <template v-for="element in newPopup.children">
             <ActiveElement v-if="element.type === 'button'" :key="element.id" :id="element.id" @close="removeTemplateElement(element.id)">
-              <BaseButton />
+              <TemplateButton :label="element.label" />
             </ActiveElement>
             <ActiveElement v-else-if="element.type === 'input'" :id="element.id" @close="removeTemplateElement(element.id)">
-              <BaseInput :placeholder="element.placeholder" />
+              <TemplateInput :placeholder="element.placeholder" />
             </ActiveElement>
             <ActiveElement v-else-if="element.type === 'text'" :id="element.id" @close="removeTemplateElement(element.id)">
-              <TextLabel :text-value="element.label" />
+              <TemplateText :content="element.content" />
             </ActiveElement>
           </template>
         </div>
@@ -34,11 +34,11 @@
 
 <script>
 import DropDownOpt from "./DropDownOpt.vue";
-import BaseButton from './BaseButton.vue';
 import ActiveElement from './ActiveElement.vue';
 import {mapMutations, mapState} from "vuex";
-import BaseInput from "./BaseInput.vue";
-import TextLabel from "./TextLabel.vue";
+import TemplateInput from "./TemplateInput.vue";
+import TemplateText from "./TemplateText.vue";
+import TemplateButton from './TemplateButton.vue';
 
 export default {
   name: "ViewPage",
@@ -49,10 +49,10 @@ export default {
     };
   },
   components: {
-    TextLabel,
-    BaseInput,
+    TemplateText,
+    TemplateInput,
     DropDownOpt,
-    BaseButton,
+    TemplateButton,
     ActiveElement
   },
   computed: {

@@ -1,19 +1,24 @@
 <template>
   <button
-    type="button"
-    :class="[
+      :class="[
       btnStyles,
       `base-btn btn btn-${bgColor} btn-${buttonSize} text-${textColor}`,
     ]"
-  >
-    SIGNUP NOW
+      type="button">
+    {{ label }}
   </button>
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
-  name: "BaseButton",
+  name: "TemplateButton",
   computed: {
+    ...mapGetters({
+      getActiveTemplateElement: "getActiveTemplateElement",
+    }),
+
     btnStyles() {
       return {
         "text-truncate": this.truncateText,
@@ -37,6 +42,10 @@ export default {
       type: String,
       default: "lg",
     },
+    label: {
+      type: String,
+      required: true,
+    }
   },
 };
 </script>
@@ -50,24 +59,31 @@ export default {
   &.text-primary {
     color: #0d6efd;
   }
+
   &.text-secondary {
     color: #adb5bd;
   }
+
   &.text-success {
     color: #198754;
   }
+
   &.text-danger {
     color: #dc3545;
   }
+
   &.text-warning {
     color: #ffc107;
   }
+
   &.text-info {
     color: #0dcaf0;
   }
+
   &.text-light {
     color: #ffffff;
   }
+
   &.text-dark {
     color: #000000;
   }
