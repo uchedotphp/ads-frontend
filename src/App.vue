@@ -1,24 +1,40 @@
 <template>
-  <div class="container-fluid">
-    <div class="row">
-      <LeftPanel class="col-xs-12 col-sm-2" />
-      <PreviewScreen class="col-xs-12 col px-0" />
-      <RightPanel class="col-6 col-sm-3" />
+  <section class="container-fluid d-flex flex-column">
+    <TopHeader />
+    <div class="row content flex-grow-1">
+      <LeftPanel class="col-12 col-sm-3 col-lg-2" />
+      <PreviewScreen class="col-auto col-md" />
+      <RightPanel class="col-6 col-lg-3" />
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
 import PreviewScreen from "./components/PreviewScreen.vue";
 import LeftPanel from "./components/LeftPanel.vue";
 import RightPanel from "./components/RightPanel.vue";
+import TopHeader from "./components/TopHeader.vue";
 export default {
   components: {
     PreviewScreen,
     LeftPanel,
     RightPanel,
+    TopHeader,
   },
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.container-fluid {
+  height: 100vh;
+  .content {
+    flex-direction: row;
+    @media (max-width: 767.98px) {
+      // flex-direction: column;
+      > * {
+        // width: 100%;
+      }
+    }
+  }
+}
+</style>

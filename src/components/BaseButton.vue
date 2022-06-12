@@ -6,7 +6,9 @@
       `base-btn btn btn-${bgColor} btn-${buttonSize} text-${textColor}`,
     ]"
   >
-    SIGNUP NOW
+    <slot>
+      {{ buttonLabel }}
+    </slot>
   </button>
 </template>
 
@@ -24,6 +26,10 @@ export default {
     truncateText: {
       type: Boolean,
       default: true,
+    },
+    buttonLabel: {
+      type: String,
+      default: 'SIGNUP NOW'
     },
     textColor: {
       type: String,
@@ -43,6 +49,7 @@ export default {
 
 <style lang="scss" scoped>
 .base-btn {
+  border: none;
   border-radius: 12px;
   padding-block: 15px;
   font-weight: 900;

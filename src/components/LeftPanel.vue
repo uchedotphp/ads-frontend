@@ -83,7 +83,15 @@ export default {
 
 <style lang="scss" scoped>
 .panel {
+  height: 100%;
   background-color: #f2f2f5;
+  padding-inline: 30px;
+
+  @media (max-width: 767.98px) {
+    height: auto;
+    padding-inline: 0;
+  }
+
   .header-label {
     margin-top: 24px;
     margin-bottom: 4px;
