@@ -34,7 +34,7 @@
       <div class="mt-5" v-if="getActiveTemplateElement.type === 'button' || getActiveTemplateElement.type === 'text'">
         <div class="header-label">Text Color</div>
         <ul class="list-group">
-          <li class="list-group-item" @click="changeTextColor('#ff0000')">
+          <li class="list-group-item button" @click="changeTextColor('#ff0000')">
             <div class="row align-items-center">
               <div class="col-1 me-2">
                 <div style="height: 12px; width: 24px; border-radius: 4px; background-color: #ff0000;"></div>
@@ -42,7 +42,7 @@
               <div class="col-10">Red</div>
             </div>
           </li>
-          <li class="list-group-item" @click="changeTextColor('#00ff00')">
+          <li class="list-group-item button" @click="changeTextColor('#00ff00')">
             <div class="row align-items-center">
               <div class="col-1 me-2">
                 <div style="height: 12px; width: 24px; border-radius: 4px; background-color: #00ff00;"></div>
@@ -50,7 +50,7 @@
               <div class="col-10">Green</div>
             </div>
           </li>
-          <li class="list-group-item" @click="changeTextColor('#0000ff')">
+          <li class="list-group-item button" @click="changeTextColor('#0000ff')">
             <div class="row align-items-center">
               <div class="col-1 me-2">
                 <div style="height: 12px; width: 24px; border-radius: 4px; background-color: #0000ff;"></div>
@@ -58,7 +58,7 @@
               <div class="col-10">Blue</div>
             </div>
           </li>
-          <li class="list-group-item" @click="changeTextColor('#303040')">
+          <li class="list-group-item button" @click="changeTextColor('#303040')">
             <div class="row align-items-center">
               <div class="col-1 me-2">
                 <div style="height: 12px; width: 24px; border-radius: 4px; background-color: #303040;"></div>
@@ -66,7 +66,7 @@
               <div class="col-10">Dark</div>
             </div>
           </li>
-          <li class="list-group-item" @click="changeTextColor('#cc9900')">
+          <li class="list-group-item button" @click="changeTextColor('#cc9900')">
             <div class="row align-items-center">
               <div class="col-1 me-2">
                 <div style="height: 12px; width: 24px; border-radius: 4px; background-color: #cc9900;"></div>
@@ -74,7 +74,7 @@
               <div class="col-10">Orange</div>
             </div>
           </li>
-          <li class="list-group-item" @click="changeTextColor('#fff')">
+          <li class="list-group-item button" @click="changeTextColor('#fff')">
             <div class="row align-items-center">
               <div class="col-1 me-2">
                 <div style="height: 12px; width: 24px; border-radius: 4px; background-color: #fff; border: 1px solid #808080;"></div>
@@ -88,7 +88,7 @@
       <div class="mt-5" v-if="getActiveTemplateElement.type === 'button'">
         <div class="header-label">Background Color</div>
         <ul class="list-group">
-          <li class="list-group-item" @click="changeBackgroundColor('#ff0000')">
+          <li class="list-group-item button" @click="changeBackgroundColor('#ff0000')">
             <div class="row align-items-center">
               <div class="col-1 me-2">
                 <div style="height: 12px; width: 24px; border-radius: 4px; background-color: #ff0000;"></div>
@@ -96,7 +96,7 @@
               <div class="col-10">Red</div>
             </div>
           </li>
-          <li class="list-group-item" @click="changeBackgroundColor('#00ff00')">
+          <li class="list-group-item button" @click="changeBackgroundColor('#00ff00')">
             <div class="row align-items-center">
               <div class="col-1 me-2">
                 <div style="height: 12px; width: 24px; border-radius: 4px; background-color: #00ff00;"></div>
@@ -104,7 +104,7 @@
               <div class="col-10">Green</div>
             </div>
           </li>
-          <li class="list-group-item" @click="changeBackgroundColor('#0000ff')">
+          <li class="list-group-item button" @click="changeBackgroundColor('#0000ff')">
             <div class="row align-items-center">
               <div class="col-1 me-2">
                 <div style="height: 12px; width: 24px; border-radius: 4px; background-color: #0000ff;"></div>
@@ -112,7 +112,7 @@
               <div class="col-10">Blue</div>
             </div>
           </li>
-          <li class="list-group-item" @click="changeBackgroundColor('#303040')">
+          <li class="list-group-item button" @click="changeBackgroundColor('#303040')">
             <div class="row align-items-center">
               <div class="col-1 me-2">
                 <div style="height: 12px; width: 24px; border-radius: 4px; background-color: #303040;"></div>
@@ -120,7 +120,7 @@
               <div class="col-10">Dark</div>
             </div>
           </li>
-          <li class="list-group-item" @click="changeBackgroundColor('#cc9900')">
+          <li class="list-group-item button" @click="changeBackgroundColor('#cc9900')">
             <div class="row align-items-center">
               <div class="col-1 me-2">
                 <div style="height: 12px; width: 24px; border-radius: 4px; background-color: #cc9900;"></div>
@@ -128,7 +128,7 @@
               <div class="col-10">Orange</div>
             </div>
           </li>
-          <li class="list-group-item" @click="changeBackgroundColor('#fff')">
+          <li class="list-group-item button" @click="changeBackgroundColor('#fff')">
             <div class="row align-items-center">
               <div class="col-1 me-2">
                 <div style="height: 12px; width: 24px; border-radius: 4px; background-color: #fff; border: 1px solid #808080;"></div>
