@@ -74,6 +74,14 @@
               <div class="col-10">Orange</div>
             </div>
           </li>
+          <li class="list-group-item" @click="changeTextColor('#fff')">
+            <div class="row align-items-center">
+              <div class="col-1 me-2">
+                <div style="height: 12px; width: 24px; border-radius: 4px; background-color: #fff; border: 1px solid #808080;"></div>
+              </div>
+              <div class="col-10">White</div>
+            </div>
+          </li>
         </ul>
       </div>
 
@@ -118,6 +126,14 @@
                 <div style="height: 12px; width: 24px; border-radius: 4px; background-color: #cc9900;"></div>
               </div>
               <div class="col-10">Orange</div>
+            </div>
+          </li>
+          <li class="list-group-item" @click="changeBackgroundColor('#fff')">
+            <div class="row align-items-center">
+              <div class="col-1 me-2">
+                <div style="height: 12px; width: 24px; border-radius: 4px; background-color: #fff; border: 1px solid #808080;"></div>
+              </div>
+              <div class="col-10">White</div>
             </div>
           </li>
         </ul>
