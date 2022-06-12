@@ -1,6 +1,6 @@
 <template>
   <div
-      :style="`color: ${textColor}`"
+      :style="`color: ${color}; font-size: ${fontSize};`"
       class="template-content-editable"
       contenteditable="true"
       @input="updateText">
@@ -21,8 +21,12 @@ export default {
     },
     color: {
       type: String,
-      default: "light",
+      default: "#999",
     },
+    size: {
+      type: String,
+      default: "md",
+    }
   },
   data() {
     return {
@@ -30,12 +34,14 @@ export default {
     };
   },
   computed: {
-    textColor() {
-      if (this.color) {
-        return this.color;
+    fontSize() {
+      if (this.size == 'sm') {
+        return '14px';
+      } else if (this.size == 'lg') {
+        return '20px';
       }
-      return "#999";
-    }
+      return '16px';
+    },
   },
   methods: {
     ...mapMutations(["updateActiveElementProperty"]),

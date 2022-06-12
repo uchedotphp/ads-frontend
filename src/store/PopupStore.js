@@ -34,6 +34,7 @@ const store = createStore({
                 color: "#fff",
                 label: "Button",
                 truncate: false,
+                size: "md",
             });
         },
 
@@ -43,7 +44,7 @@ const store = createStore({
                 type: "text",
                 color: "#ffffff",
                 text: "Type your text here",
-                size: "m",
+                size: "md",
             });
         },
 

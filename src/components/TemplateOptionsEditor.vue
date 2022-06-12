@@ -11,11 +11,11 @@
       </div>
 
       <div class="mt-5" v-if="getActiveTemplateElement.type === 'text'">
-        <div class="header-label">Text Size</div>
+        <div class="header-label">Size</div>
         <div aria-label="Basic outlined example" class="btn-group" role="group">
-          <button class="btn btn-outline-primary" type="button">Small</button>
-          <button class="btn btn-outline-primary" type="button">Medium</button>
-          <button class="btn btn-outline-primary" type="button">Large</button>
+          <button @click.prevent="updateElementSize('sm')" class="btn btn-outline-primary" type="button">Small</button>
+          <button @click.prevent="updateElementSize('md')" class="btn btn-outline-primary" type="button">Medium</button>
+          <button @click.prevent="updateElementSize('lg')" class="btn btn-outline-primary" type="button">Large</button>
         </div>
       </div>
 
@@ -180,6 +180,10 @@ export default {
 
     updateElementText(e) {
       this.updateActiveElementProperty({key: "text", value: e.target.value});
+    },
+
+    updateElementSize(size) {
+      this.updateActiveElementProperty({key: "size", value: size});
     },
 
     changeTextColor(color) {

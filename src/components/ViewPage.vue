@@ -9,13 +9,13 @@
         <div>
           <template v-for="element in newPopup.children">
             <ActiveElement v-if="element.type === 'button'" :key="element.id" :id="element.id" @close="removeTemplateElement(element.id)">
-              <TemplateButton :label="element.label" />
+              <TemplateButton :label="element.label" :bg-color="element.backgroundColor" :text-color="element.color" :size="element.size" />
             </ActiveElement>
             <ActiveElement v-else-if="element.type === 'input'" :id="element.id" @close="removeTemplateElement(element.id)">
               <TemplateInput :placeholder="element.placeholder" />
             </ActiveElement>
             <ActiveElement v-else-if="element.type === 'text'" :id="element.id" @close="removeTemplateElement(element.id)">
-              <TemplateText :content="element.content" />
+              <TemplateText :content="element.text" :size="element.size" :color="element.color" />
             </ActiveElement>
           </template>
         </div>

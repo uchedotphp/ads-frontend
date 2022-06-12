@@ -1,9 +1,7 @@
 <template>
   <button
-      :class="[
-      btnStyles,
-      `base-btn btn btn-${bgColor} btn-${buttonSize} text-${textColor}`,
-    ]"
+      class="base-btn btn"
+      :style="`color: ${textColor}; background-color: ${bgColor}; font-size: ${fontSize}`"
       type="button">
     {{ label }}
   </button>
@@ -24,6 +22,15 @@ export default {
         "text-truncate": this.truncateText,
       };
     },
+
+    fontSize() {
+      if (this.size == 'sm') {
+        return '14px';
+      } else if (this.size == 'lg') {
+        return '20px';
+      }
+      return '16px';
+    }
   },
   props: {
     truncateText: {
@@ -38,9 +45,9 @@ export default {
       type: String,
       default: "secondary",
     },
-    buttonSize: {
+    size: {
       type: String,
-      default: "lg",
+      default: "md",
     },
     label: {
       type: String,
