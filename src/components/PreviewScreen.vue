@@ -1,5 +1,5 @@
 <template>
-  <div class="" style="min-height: 100vh; display: grid; place-content: center">
+  <div class="preview-screen">
     <div class="card mx-auto">
       <div class="inner-content">
         <p v-if="newPopup.children.length === 0">
@@ -9,7 +9,7 @@
         <div>
           <template v-for="element in newPopup.children">
             <ActiveElement v-if="element.type === 'button'" :key="element.id" :id="element.id" @close="removeTemplateElement(element.id)">
-              <TemplateButton :label="element.label" :bg-color="element.backgroundColor" :text-color="element.color" :size="element.size" />
+              <TemplateButton :bg-color="element.backgroundColor" :text-color="element.color" :size="element.size">{{ element.label }}</TemplateButton>
             </ActiveElement>
             <ActiveElement v-else-if="element.type === 'input'" :id="element.id" @close="removeTemplateElement(element.id)">
               <TemplateInput :placeholder="element.placeholder" />
@@ -19,14 +19,6 @@
             </ActiveElement>
           </template>
         </div>
-        <!--         <DropDownOpt-->
-        <!--          label="Select color"-->
-        <!--          :values="['info', 'danger', 'dark', 'warning']"-->
-        <!--          :textOptionsType="false"-->
-        <!--          :selectedOpt="selectedOpt"-->
-        <!--          @selectOption="selectedOpt = $event"-->
-        <!--        />-->
-
       </div>
     </div>
   </div>
@@ -34,18 +26,18 @@
 
 <script>
 import DropDownOpt from "./DropDownOpt.vue";
-import ActiveElement from './ActiveElement.vue';
 import {mapMutations, mapState} from "vuex";
 import TemplateInput from "./TemplateInput.vue";
 import TemplateText from "./TemplateText.vue";
 import TemplateButton from './TemplateButton.vue';
+import ActiveElement from "./ActiveElement.vue";
 
 export default {
-  name: "ViewPage",
+  name: "PreviewScreen",
   data() {
     return {
       textLabel: "text",
-      selectedOpt: '14px'
+      selectedOpt: "14px",
     };
   },
   components: {
@@ -53,24 +45,36 @@ export default {
     TemplateInput,
     DropDownOpt,
     TemplateButton,
-    ActiveElement
+    ActiveElement,
   },
   computed: {
     ...mapState(["activeElementId", "newPopup"]),
   },
   methods: {
     ...mapMutations(["removeTemplateElement"]),
-  }
+  },
 };
 </script>
 
 <style lang="scss" scoped>
+.preview-screen {
+  display: grid;
+  place-content: center;
+  @media (max-width: 767.98px) {
+    margin-top: 1rem;
+    min-height: auto;
+    width: 100vw;
+  }
+}
 .card {
   display: flex;
   height: 500px;
   width: 500px;
   text-align: center;
   background: #e85e5b;
+  @media (max-width: 767.98px) {
+    width: 100vw;
+  }
 
   .inner-content {
     margin: 10px;
