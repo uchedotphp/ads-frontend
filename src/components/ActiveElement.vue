@@ -35,7 +35,6 @@ export default {
     },
 
     activate() {
-      console.log(this.id);
       this.changeActiveElementId(this.id);
     }
   }

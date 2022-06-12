@@ -11,6 +11,15 @@ const store = createStore({
             }
         }
     },
+    getters: {
+        getActiveTemplateElement(state) {
+            const filteredChildren = state.newPopup.children.filter(child => {
+                return child.id === state.activeElementId;
+            });
+
+            return filteredChildren.length > 0 ? filteredChildren[0] : null;
+        }
+    },
     mutations: {
         newStarDivider(state) {
             state.newPopup.children.push({

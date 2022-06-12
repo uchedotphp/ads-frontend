@@ -51,7 +51,7 @@
         <ViewPage />
       </div>
       <div class="col-3 border border-info">
-
+        <TemplateOptionsEditor />
       </div>
     </div>
   </div>
@@ -59,10 +59,12 @@
 
 <script>
 import ViewPage from './components/ViewPage.vue';
+import TemplateOptionsEditor from './components/TemplateOptionsEditor.vue';
 import {mapState, mapMutations} from "vuex";
 export default {
   components: {
     ViewPage,
+    TemplateOptionsEditor,
   },
 
   data() {
