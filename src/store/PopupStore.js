@@ -72,7 +72,7 @@ const store = createStore({
             this.commit("reIndex");
 
             if (state.activeElementId === id) {
-                this.changeActiveElementId(0);
+                this.commit("changeActiveElementId", 0);
             }
         },
 

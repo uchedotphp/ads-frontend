@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-2 border border-danger">
+      <div class="col-2">
         <ul class="nav flex-column mt-5">
           <li class="nav-item">
             <a class="nav-link" aria-current="page" href="#">My Popups</a>
@@ -47,10 +47,12 @@
           </li>
         </ul>
       </div>
-      <div class="col border border-danger">
-        <ViewPage />
+      <div class="col">
+        <div class="editor">
+          <ViewPage />
+        </div>
       </div>
-      <div class="col-3 border border-info">
+      <div class="col-3">
         <TemplateOptionsEditor />
       </div>
     </div>
