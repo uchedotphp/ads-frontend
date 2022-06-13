@@ -4,21 +4,23 @@
       <img
         src="../assets/images/poptin-logo.png"
         height="40"
-        alt=""
-        srcset=""
+        alt="poptin logo"
       />
       <h2 class="title ms-2">Poptin test</h2>
     </div>
     <div class="col me-auto">
-      <TemplateButton buttonSize="sm" class="save-template">
-        Save template
+      <TemplateButton @click="save" buttonSize="sm" class="save-template">
+        <span v-if="!loading">
+          Save template
+        </span>
+        <LoadingSpinner v-else />
       </TemplateButton>
-      <a href="#" class="preview-link">
+      <a v-if="!loading" href="#" class="preview-link">
         <i class="bi bi-folder-symlink me-1"></i>
         Preview in browser
       </a>
     </div>
-    <div class="col col-md-auto">
+    <div class="d-none d-lg-block col col-md-auto">
       {{ new Date().toLocaleString() }}
     </div>
   </header>
@@ -26,10 +28,27 @@
 
 <script>
 import TemplateButton from "./TemplateButton.vue";
+import LoadingSpinner from './LoadingSpinner.vue';
+import { mapActions } from "vuex";
+
 export default {
   name: "TopHeader",
   components: {
     TemplateButton,
+    LoadingSpinner
+  },
+  data() {
+    return {
+      loading: true
+    }
+  },
+  methods: {
+    ...mapActions(["saveTemplate"]),
+    async save() {
+      this.loading = true
+      await this.saveTemplate();
+      this.loading = fasle
+    },
   },
 };
 </script>
