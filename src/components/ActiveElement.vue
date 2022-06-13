@@ -3,11 +3,12 @@
     draggable="true"
     class="container active-element"
     @click.stop="activate"
-    @dragstart.stop="startDrag($event, element)"
+    @dragstart.stop="startDrag($event)"
     @dragenter.prevent
     @dragover.prevent
+    @drop.stop="drop($event)"
   >
-    <div class="opts">
+    <div v-if="id == activeElementId" class="opts">
       <i
         :class="{ active: id == activeElementId }"
         class="bi bi-grip-horizontal"
@@ -37,6 +38,10 @@ export default {
       type: Number,
       default: 0,
     },
+    slotId: {
+      type: Number,
+      required: true
+    },
   },
 
   computed: {
@@ -47,7 +52,7 @@ export default {
   },
 
   methods: {
-    ...mapMutations(["changeActiveElementId"]),
+    ...mapMutations(["changeActiveElementId", "swapElements"]),
 
     close() {
       this.$emit("close");
@@ -62,6 +67,14 @@ export default {
       event.dataTransfer.dropEffect = "move";
       event.dataTransfer.effectAllowed = "move";
       event.dataTransfer.setData("itemId", this.id);
+    },
+    
+    drop(event) {
+    const elementIdToBeMove = parseInt(event.dataTransfer.getData('itemId'))
+    this.swapElements({
+        elementIdToBeMoved: elementIdToBeMove,
+        targetElementId: this.slotId
+    })
     },
   },
 };
@@ -92,10 +105,9 @@ i.bi {
 }
 
 .slot {
-  //background-color: white;
   padding: 5px;
   border-radius: 12px;
-  border: 1px dashed #e0e8ff;
+  border: 1px dashed transparent;
 
   &.active {
     border-width: 2px;

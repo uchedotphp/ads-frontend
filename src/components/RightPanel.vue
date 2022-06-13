@@ -1,7 +1,7 @@
 <template>
   <div
     class="prop-editor bg-light"
-    :class="[!getActiveTemplateElement ? 'd-none' : 'd-block']"
+    :class="[!getActiveTemplateElement ? 'd-none' : 'd-block', 'd-lg-block']"
   >
     <svg
     @click="closeProp"

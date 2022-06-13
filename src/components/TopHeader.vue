@@ -6,7 +6,7 @@
         height="40"
         alt="poptin logo"
       />
-      <h2 class="title ms-2">Poptin test</h2>
+      <h2 class="title ms-2">test</h2>
     </div>
     <div class="col me-auto">
       <TemplateButton @click="save" buttonSize="sm" class="save-template">
@@ -78,6 +78,7 @@ export default {
   }
   .save-template {
     background: linear-gradient(0deg, #6a11cb, #2575fc) !important;
+    width: fit-content;
     padding-inline: 20px;
     color: #ffffff;
   }
