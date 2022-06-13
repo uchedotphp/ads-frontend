@@ -1,9 +1,14 @@
 <template>
-  <div class="preview-screen">
-    <ActiveElement :id="100">
-      <div @click.stop="setWrapperActive" class="card mx-auto" :style="`background-color: ${bgColor}`">
+  <div class="preview-screen px-0">
+    <ActiveElement :id="100" @close="unset">
+      <div
+        @click.stop="setWrapperActive"
+        @drop="ondrop($event)"
+        class="card mx-auto"
+        :style="`background-color: ${bgColor}`"
+      >
         <div class="inner-content">
-          <p v-if="newPopup.children.length === 0">
+          <p class="welcome-text" v-if="newPopup.children.length === 0">
             Click on an element on the
             <span class="d-none d-sm-inline">left</span
             ><span class="d-sm-none">top</span> to add them here.
@@ -46,11 +51,12 @@
         </div>
       </div>
     </ActiveElement>
+
+    
   </div>
 </template>
 
 <script>
-import DropDownOpt from "./DropDownOpt.vue";
 import { mapMutations, mapState } from "vuex";
 import TemplateInput from "./TemplateInput.vue";
 import TemplateText from "./TemplateText.vue";
@@ -68,21 +74,30 @@ export default {
   components: {
     TemplateText,
     TemplateInput,
-    DropDownOpt,
     TemplateButton,
-    ActiveElement,
+    ActiveElement
   },
   computed: {
     ...mapState(["activeElementId", "newPopup"]),
     ...mapState({
-      bgColor: state => state.newPopup.backgroundColor
-    })
+      bgColor: (state) => state.newPopup.backgroundColor,
+    }),
   },
   methods: {
-    ...mapMutations(["removeTemplateElement", 'changeActiveElementId']),
+    ...mapMutations(["removeTemplateElement", "changeActiveElementId"]),
     setWrapperActive() {
-      this.changeActiveElementId(100)
-    }
+      this.changeActiveElementId(100);
+    },
+    ondrop(event) {
+      console.log(
+        "dropping stuff: ",
+        event,
+        event.dataTransfer.getData("itemId")
+      );
+    },
+    unset() {
+      this.changeActiveElementId(0);
+    },
   },
 };
 </script>
@@ -104,19 +119,25 @@ export default {
   text-align: center;
   clip-path: circle(50%);
   @media (max-width: 767.98px) {
-    width: 100vw;
+    height: 300px;
+    width: 300px;
+    width: auto;
   }
 
   .inner-content {
     margin: 10px;
     flex: 1;
-    overflow: hidden;
+    overflow: auto;
     border: 3px solid white;
     max-height: 480px;
     max-width: 480px;
     border-radius: 99999px;
     display: grid;
     place-content: center;
+    @media (max-width: 767.98px) {
+      max-height: 280px;
+      max-width: 280px;
+    }
 
     p {
       font-size: 24px;

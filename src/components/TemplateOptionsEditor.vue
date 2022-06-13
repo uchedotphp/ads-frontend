@@ -409,7 +409,6 @@ export default {
     }),
     templateText: {
       set(val) {
-        console.log(val);
         this.updateActiveElementProperty({ key: "text", value: val });
       },
       get() {

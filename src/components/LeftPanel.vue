@@ -1,8 +1,14 @@
 <template>
-  <div class="panel">
+  <div class="panel px-4">
     <ul class="nav main-nav">
       <li class="nav-item">
-        <a class="nav-link pe-2" aria-current="page" href="#">My Popups</a>
+        <a
+          @click="showSavedTemplates"
+          class="nav-link pe-2"
+          aria-current="page"
+          href="#"
+          >My Popups</a
+        >
         <i class="bi bi-cloud-download"></i>
       </li>
       <li class="nav-item">
@@ -22,11 +28,52 @@
         </a>
       </li>
     </ul>
+
+    <!-- modal -->
+    <ModalContent id="modalContent">
+      <template #title> Popup lists </template>
+      <div class="row">
+        <div class="col">Id</div>
+        <div class="col text-center">Date</div>
+        <div class="col text-end">Action</div>
+      </div>
+      <ul v-if="popups.length" class="list-group row">
+        <button
+          type="button"
+          v-for="popup in popups"
+          :key="popup"
+          class="list-group-item d-flex justify-content-between align-items-center col list-group-item-action"
+        >
+          <span class="text-bold text-primary">
+            {{ popup.idem }}
+          </span>
+          <span class="text-center">
+            {{ new Date(popup.created_at).toLocaleString() }}
+          </span>
+          <span>
+            <i
+              @click="useTemplate(popup.data)"
+              class="bi bi-download text-primary"
+              role="button"
+            ></i>
+            <i
+              @click="deleteTemp(popup.id)"
+              class="bi bi-trash ms-3 text-danger"
+              role="button"
+            ></i>
+          </span>
+        </button>
+      </ul>
+      <p v-else class="text-center">No save templates</p>
+    </ModalContent>
   </div>
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapState, mapMutations, mapActions } from "vuex";
+import { Modal } from "bootstrap/dist/js/bootstrap.bundle";
+import ModalContent from "./ModalContent.vue";
+
 export default {
   name: "LeftPanel",
   data() {
@@ -47,12 +94,20 @@ export default {
       ],
     };
   },
+  components: {
+    ModalContent,
+  },
+  computed: {
+    ...mapState(["popups"]),
+  },
   methods: {
+    ...mapActions(["deleteTemplate"]),
     ...mapMutations([
       "newStarDivider",
       "newButton",
       "newText",
       "newInputField",
+      "setSavedTemplate",
     ]),
     action(elementTitle) {
       const element = elementTitle.title.toLowerCase();
@@ -76,6 +131,15 @@ export default {
         default:
           break;
       }
+    },
+    showSavedTemplates() {
+      new Modal(document.getElementById("modalContent")).show();
+    },
+    useTemplate(template) {
+      this.setSavedTemplate(template);
+    },
+    deleteTemp(id) {
+      this.deleteTemplate(id);
     },
   },
 };

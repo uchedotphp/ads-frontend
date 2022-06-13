@@ -1,15 +1,15 @@
 <template>
   <div
     class="prop-editor bg-light"
-    :class="{ 'd-none d-sm-block': !getActiveTemplateElement }"
-    @click="closeProp"
+    :class="[!getActiveTemplateElement ? 'd-none' : 'd-block']"
   >
     <svg
+    @click="closeProp"
       xmlns="http://www.w3.org/2000/svg"
       width="26"
       height="26"
       fill="currentColor"
-      class="bi bi-x-circle d-sm-none"
+      class="bi bi-x-circle d-lg-none"
       viewBox="0 0 16 16"
     >
       <path
@@ -51,7 +51,7 @@ export default {
     // display: none;
   }
 
-  @media (max-width: 767.98px) {
+  @media (max-width: 768px) {
     margin-top: 0;
     flex-direction: row;
     justify-content: space-between;
