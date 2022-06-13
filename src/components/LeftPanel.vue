@@ -52,7 +52,7 @@
           </span>
           <span>
             <i
-              @click="useTemplate(popup.data)"
+              @click="useTemplate(popup.data, popup.idem)"
               class="bi bi-download text-primary"
               role="button"
             ></i>
@@ -108,6 +108,7 @@ export default {
       "newText",
       "newInputField",
       "setSavedTemplate",
+      "setStates"
     ]),
     action(elementTitle) {
       const element = elementTitle.title.toLowerCase();
@@ -135,7 +136,11 @@ export default {
     showSavedTemplates() {
       new Modal(document.getElementById("modalContent")).show();
     },
-    useTemplate(template) {
+    useTemplate(template, idem) {
+      const theTemplate = this.popups.find(t => t.idem === idem)
+      this.setStates({
+        currentTemplateIdem:  theTemplate.idem
+      })
       this.setSavedTemplate(template);
     },
     deleteTemp(id) {

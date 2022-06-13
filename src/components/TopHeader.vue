@@ -14,8 +14,9 @@
         <LoadingSpinner v-else> Saving template... </LoadingSpinner>
       </TemplateButton>
       <button
+        :disabled="!currentTemplateIdem"
         v-if="!loading"
-        @click="$router.push({ name: 'Demo' })"
+        @click="previewTemplate"
         class="preview-link"
       >
         <i class="bi bi-folder-symlink me-1"></i>
@@ -31,7 +32,7 @@
 <script>
 import TemplateButton from "./TemplateButton.vue";
 import LoadingSpinner from "./LoadingSpinner.vue";
-import { mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "TopHeader",
@@ -44,12 +45,21 @@ export default {
       loading: false,
     };
   },
+  computed: {
+    ...mapState(["currentTemplateIdem"]),
+  },
   methods: {
     ...mapActions(["saveTemplate"]),
     async save() {
       this.loading = true;
       await this.saveTemplate();
       this.loading = false;
+    },
+    previewTemplate() {
+      this.$router.push({
+        name: "Demo",
+        params: { idem: this.currentTemplateIdem },
+      });
     },
   },
 };

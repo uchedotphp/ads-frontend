@@ -7,6 +7,7 @@ const store = createStore({
     return {
       popups: [],
       activeElementId: 0,
+      currentTemplateIdem: null,
       newPopup: {
         backgroundColor: "#e85e5b",
         children: [],
@@ -15,6 +16,11 @@ const store = createStore({
   },
 
   mutations: {
+    setStates(state, data) {
+      Object.keys(data).map((key) => {
+        state[key] = data[key];
+      });
+    },
     setFetchedPopups(state, popups) {
       state.popups = popups;
     },
@@ -130,14 +136,14 @@ const store = createStore({
         console.log("error deleting template", error);
       }
     },
-    async fetchTemplate({ },idem) {
+    async fetchTemplate({}, idem) {
       try {
-        const { data } = await apiConnect.serve(idem)
-        return data.popup.data
+        const { data } = await apiConnect.serve(idem);
+        return data.popup.data;
       } catch (error) {
-        console.log('error fetching');
+        console.log("error fetching");
       }
-    }
+    },
   },
 
   getters: {
