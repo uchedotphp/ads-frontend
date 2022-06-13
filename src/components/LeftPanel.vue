@@ -29,38 +29,43 @@
       </li>
     </ul>
 
-
     <!-- modal -->
-  <ModalContent id="modalContent">
-    <template #title>
-      Popup lists
-    </template>
-    <div class="row">
-      <div class="col">Id</div>
-      <div class="col text-center">Date</div>
-      <div class="col text-end">Action</div>
-    </div>
-    <ul v-if="popups.length" class="list-group row">
-      <li
-      v-for="popup in popups" :key="popup"
-        class="list-group-item d-flex justify-content-between align-items-center col"
-      >
-      <span class="text-bold text-primary">
-        {{ popup.idem }}
-      </span>
-      <span class="text-center">
-      {{ new Date(popup.created_at).toLocaleString() }}
-      </span>
-      <span>
-        <i @click="useTemplate(popup.data)" class="bi bi-download text-primary" role="button"></i>
-        <i @click="deleteTemp(popup.id)" class="bi bi-trash ms-3 text-danger" role="button"></i>
-      </span>
-      </li>
-    </ul>
-    <p v-else class="text-center">
-      No save templates
-    </p>
-  </ModalContent>
+    <ModalContent id="modalContent">
+      <template #title> Popup lists </template>
+      <div class="row">
+        <div class="col">Id</div>
+        <div class="col text-center">Date</div>
+        <div class="col text-end">Action</div>
+      </div>
+      <ul v-if="popups.length" class="list-group row">
+        <button
+          type="button"
+          v-for="popup in popups"
+          :key="popup"
+          class="list-group-item d-flex justify-content-between align-items-center col list-group-item-action"
+        >
+          <span class="text-bold text-primary">
+            {{ popup.idem }}
+          </span>
+          <span class="text-center">
+            {{ new Date(popup.created_at).toLocaleString() }}
+          </span>
+          <span>
+            <i
+              @click="useTemplate(popup.data)"
+              class="bi bi-download text-primary"
+              role="button"
+            ></i>
+            <i
+              @click="deleteTemp(popup.id)"
+              class="bi bi-trash ms-3 text-danger"
+              role="button"
+            ></i>
+          </span>
+        </button>
+      </ul>
+      <p v-else class="text-center">No save templates</p>
+    </ModalContent>
   </div>
 </template>
 
@@ -96,13 +101,13 @@ export default {
     ...mapState(["popups"]),
   },
   methods: {
-    ...mapActions(['deleteTemplate']),
+    ...mapActions(["deleteTemplate"]),
     ...mapMutations([
       "newStarDivider",
       "newButton",
       "newText",
       "newInputField",
-      'setSavedTemplate'
+      "setSavedTemplate",
     ]),
     action(elementTitle) {
       const element = elementTitle.title.toLowerCase();
@@ -131,11 +136,11 @@ export default {
       new Modal(document.getElementById("modalContent")).show();
     },
     useTemplate(template) {
-      this.setSavedTemplate(template)
+      this.setSavedTemplate(template);
     },
     deleteTemp(id) {
-      this.deleteTemplate(id)
-    }
+      this.deleteTemplate(id);
+    },
   },
 };
 </script>

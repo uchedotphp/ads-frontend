@@ -115,10 +115,10 @@ const store = createStore({
         console.log("error occured fetching popups", error);
       }
     },
-    async saveTemplate({ state }) {
+    async saveTemplate({ state, dispatch }) {
       try {
-        const data = await apiConnect.createPopup("firstTemp", state.newPopup);
-        console.log("saved: ", data);
+        await apiConnect.createPopup("firstTemp", state.newPopup);
+        dispatch("fetchPopups");
       } catch (error) {
         console.log("error saving template", error);
       }

@@ -47,7 +47,7 @@ export default {
     async save() {
       this.loading = true
       await this.saveTemplate();
-      this.loading = fasle
+      this.loading = false
     },
   },
 };
