@@ -1,9 +1,8 @@
 <template>
   <div class="preview-screen px-0">
-    <ActiveElement :id="100" @close="unset">
+    <ActiveElement :id="100" @close="unset" :slotId="0">
       <div
         @click.stop="setWrapperActive"
-        @drop="ondrop($event)"
         class="card mx-auto"
         :style="`background-color: ${bgColor}`"
       >
@@ -13,12 +12,13 @@
             <span class="d-none d-sm-inline">left</span
             ><span class="d-sm-none">top</span> to add them here.
           </p>
-          <div>
+          <div style="max-width: 400px">
             <template v-for="element in newPopup.children">
               <ActiveElement
                 v-if="element.type === 'button'"
                 :key="element.id"
                 :id="element.id"
+                :slotId="element.id"
                 @close="removeTemplateElement(element.id)"
               >
                 <TemplateButton
@@ -31,6 +31,7 @@
               <ActiveElement
                 v-else-if="element.type === 'input'"
                 :id="element.id"
+                :slotId="element.id"
                 @close="removeTemplateElement(element.id)"
               >
                 <TemplateInput :placeholder="element.placeholder" />
@@ -38,6 +39,7 @@
               <ActiveElement
                 v-else-if="element.type === 'text'"
                 :id="element.id"
+                :slotId="element.id"
                 @close="removeTemplateElement(element.id)"
               >
                 <TemplateText
@@ -88,13 +90,6 @@ export default {
     setWrapperActive() {
       this.changeActiveElementId(100);
     },
-    ondrop(event) {
-      console.log(
-        "dropping stuff: ",
-        event,
-        event.dataTransfer.getData("itemId")
-      );
-    },
     unset() {
       this.changeActiveElementId(0);
     },
@@ -121,7 +116,6 @@ export default {
   @media (max-width: 767.98px) {
     height: 300px;
     width: 300px;
-    width: auto;
   }
 
   .inner-content {

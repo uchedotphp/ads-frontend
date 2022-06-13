@@ -63,5 +63,6 @@ export default {
   border-radius: 12px;
   padding-block: 15px;
   font-weight: 900;
+  width: 100%;
 }
 </style>

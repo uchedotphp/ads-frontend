@@ -84,7 +84,6 @@ export default {
   @media (max-width: 767.98px) {
     height: 300px;
     width: 300px;
-    width: auto;
   }
 
   .inner-content {
@@ -97,6 +96,10 @@ export default {
     border-radius: 99999px;
     display: grid;
     place-content: center;
+
+    > * {
+      padding-bottom: 10px;
+    }
     @media (max-width: 767.98px) {
       max-height: 280px;
       max-width: 280px;

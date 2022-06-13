@@ -1,15 +1,16 @@
 <template>
   <div
-      :style="`color: ${color}; font-size: ${fontSize};`"
-      class="template-content-editable"
-      contenteditable="true"
-      @input="updateText">
+    :style="`color: ${color}; font-size: ${fontSize}; font-weight: ${fontWeight}`"
+    class="template-content-editable"
+    contenteditable="true"
+    @input="updateText"
+  >
     {{ content }}
   </div>
 </template>
 
 <script>
-import {mapMutations} from "vuex";
+import { mapMutations } from "vuex";
 
 export default {
   name: "TemplateText",
@@ -26,7 +27,7 @@ export default {
     size: {
       type: String,
       default: "md",
-    }
+    },
   },
   data() {
     return {
@@ -35,19 +36,42 @@ export default {
   },
   computed: {
     fontSize() {
-      if (this.size == 'sm') {
-        return '14px';
-      } else if (this.size == 'lg') {
-        return '20px';
+      if (this.size == "sm") {
+        return "14px";
+      } else if (this.size == "lg") {
+        return "26px";
       }
-      return '16px';
+      return "16px";
+    },
+    fontWeight() {
+      let weight;
+      switch (this.fontSize === "14px") {
+        case "14px":
+          weight = 400;
+          break;
+
+        case "16px":
+          weight = 500;
+          break;
+
+        case "26px":
+          weight = 700;
+          break;
+
+        default:
+          break;
+      }
+      return weight;
     },
   },
   methods: {
     ...mapMutations(["updateActiveElementProperty"]),
 
     updateText(e) {
-      this.updateActiveElementProperty({key: "text", value: e.target.innerText});
+      this.updateActiveElementProperty({
+        key: "text",
+        value: e.target.innerText,
+      });
     },
 
     resetLabel() {
@@ -62,49 +86,11 @@ export default {
 
 <style lang="scss" scoped>
 .template-content-editable {
+  line-height: 26.23px;
+  text-align: center;
   &:focus {
     outline: none;
     border: none;
-  }
-}
-
-.text-label {
-  border: none;
-  background-color: transparent;
-  text-align: center;
-  font-size: 20px;
-  outline: none;
-
-  &.primary {
-    color: #0d6efd;
-  }
-
-  &.secondary {
-    color: #adb5bd;
-  }
-
-  &.success {
-    color: #198754;
-  }
-
-  &.danger {
-    color: #dc3545;
-  }
-
-  &.warning {
-    color: #ffc107;
-  }
-
-  &.info {
-    color: #0dcaf0;
-  }
-
-  &.light {
-    color: #ffffff;
-  }
-
-  &.dark {
-    color: #000000;
   }
 }
 </style>

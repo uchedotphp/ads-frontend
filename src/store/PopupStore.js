@@ -109,6 +109,16 @@ const store = createStore({
         state.newPopup.children[i].id = i + 1;
       }
     },
+
+    swapElements(state, { elementIdToBeMoved, targetElementId }) {
+      if (elementIdToBeMoved !== targetElementId) {
+        const index = state.newPopup.children.findIndex(
+          (t) => t.id === elementIdToBeMoved
+        );
+        const element = state.newPopup.children.splice(index, 1)[0]
+        state.newPopup.children.splice(targetElementId, 0, element);
+      }
+    },
   },
 
   actions: {
