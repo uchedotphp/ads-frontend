@@ -1,5 +1,5 @@
 <template>
-  <div class="container active-element" @click.stop="activate">
+  <div draggable="true" class="container active-element" @click.stop="activate">
     <div class="opts">
       <i :class="{'active': id == activeElementId}" class="bi bi-grip-horizontal " role="button"></i>
       <i :class="{'active': id == activeElementId}" class="bi bi-x" role="button" @click="close"></i>
@@ -36,6 +36,7 @@ export default {
 
     activate() {
       this.changeActiveElementId(this.id);
+      console.log('the id: ', typeof this.id);
     }
   }
 };

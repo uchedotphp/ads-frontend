@@ -35,9 +35,9 @@ export default {
     }),
   },
   methods: {
-    ...mapMutations(["removePropertyFocus"]),
+    ...mapMutations(["changeActiveElementId"]),
     closeProp() {
-      this.removePropertyFocus();
+      this.changeActiveElementId(0);
     },
   },
 };

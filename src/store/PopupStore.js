@@ -74,6 +74,11 @@ const store = createStore({
             }
         },
 
+        updateBodyBgColor(state, color) {
+            console.log('updating ', color);
+            state.newPopup.backgroundColor = color
+        },
+
         updateActiveElementProperty(state, d) {
             // console.log(d.key, d.value);
             this.commit("updateElementProperty", {...d, id: state.activeElementId});
