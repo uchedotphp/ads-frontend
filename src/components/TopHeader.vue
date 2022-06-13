@@ -6,7 +6,7 @@
         height="40"
         alt="poptin logo"
       />
-      <h2 class="title ms-2">test</h2>
+      <h2 class="title ms-2">Poptin test</h2>
     </div>
     <div class="col me-auto">
       <TemplateButton @click="save" buttonSize="sm" class="save-template">
