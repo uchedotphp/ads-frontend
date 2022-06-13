@@ -7,12 +7,19 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "Editor" */ "../views/Editor.vue"),
   },
-    {
-      path: "/demo/:idem",
-      name: "Demo",
-      component: () =>
-        import(/* webpackChunkName: "Demo" */ "../views/Demo.vue"),
-    },
+  {
+    path: "/demo/:idem",
+    name: "Demo",
+    component: () => import(/* webpackChunkName: "Demo" */ "../views/Demo.vue"),
+  },
+  {
+    path: "/:catchAll(.*)*",
+    name: "ErrorNotFound",
+    component: () =>
+      import(
+        /* webpackChunkName: "ErrorNotFound" */ "../views/ErrorNotFound.vue"
+      ),
+  },
 ];
 
 const router = createRouter({
