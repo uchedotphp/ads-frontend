@@ -16,7 +16,11 @@ const store = createStore({
 
   mutations: {
     setFetchedPopups(state, popups) {
+        console.log('setting: ', popups);
       state.popups = popups;
+    },
+    setSavedTemplate(state, popupElements) {
+        state.newPopup = popupElements
     },
     newStarDivider(state) {
       state.newPopup.children.push({
@@ -103,8 +107,7 @@ const store = createStore({
     async fetchPopups({ commit }) {
       try {
         const { data } = await apiConnect.getPopups();
-        commit("setFetchedPopups"), data.popups.data;
-        return data.popups.data;
+        commit("setFetchedPopups", data.popups.data);
       } catch (error) {
         console.log("error occured fetching popups", error);
       }

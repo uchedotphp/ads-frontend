@@ -51,6 +51,8 @@
         </div>
       </div>
     </ActiveElement>
+
+    
   </div>
 </template>
 
@@ -87,11 +89,15 @@ export default {
       this.changeActiveElementId(100);
     },
     ondrop(event) {
-      console.log("dropping stuff: ", event, event.dataTransfer.getData('itemId'));
+      console.log(
+        "dropping stuff: ",
+        event,
+        event.dataTransfer.getData("itemId")
+      );
     },
     unset() {
-      this.changeActiveElementId(0)
-    }
+      this.changeActiveElementId(0);
+    },
   },
 };
 </script>

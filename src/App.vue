@@ -14,6 +14,7 @@ import PreviewScreen from "./components/PreviewScreen.vue";
 import LeftPanel from "./components/LeftPanel.vue";
 import RightPanel from "./components/RightPanel.vue";
 import TopHeader from "./components/TopHeader.vue";
+
 import { mapActions } from "vuex";
 
 export default {
@@ -21,7 +22,7 @@ export default {
     PreviewScreen,
     LeftPanel,
     RightPanel,
-    TopHeader,
+    TopHeader
   },
   async mounted() {
     // fetch all popups
