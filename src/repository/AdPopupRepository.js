@@ -25,5 +25,9 @@ export default {
 
     async findPopup(id) {
         return http.get(`/popups/${id}`);
+    },
+
+    async serve(idem) {
+        return http.get(`/popup/serve/${idem}`);
     }
 }

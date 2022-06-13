@@ -16,7 +16,6 @@ const store = createStore({
 
   mutations: {
     setFetchedPopups(state, popups) {
-      console.log("setting: ", popups);
       state.popups = popups;
     },
     setSavedTemplate(state, popupElements) {
@@ -131,6 +130,14 @@ const store = createStore({
         console.log("error deleting template", error);
       }
     },
+    async fetchTemplate({ },idem) {
+      try {
+        const { data } = await apiConnect.serve(idem)
+        return data.popup.data
+      } catch (error) {
+        console.log('error fetching');
+      }
+    }
   },
 
   getters: {

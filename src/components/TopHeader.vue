@@ -10,15 +10,17 @@
     </div>
     <div class="col me-auto">
       <TemplateButton @click="save" buttonSize="sm" class="save-template">
-        <span v-if="!loading">
-          Save template
-        </span>
-        <LoadingSpinner v-else />
+        <span v-if="!loading"> Save template </span>
+        <LoadingSpinner v-else> Saving template... </LoadingSpinner>
       </TemplateButton>
-      <a v-if="!loading" href="#" class="preview-link">
+      <button
+        v-if="!loading"
+        @click="$router.push({ name: 'Demo' })"
+        class="preview-link"
+      >
         <i class="bi bi-folder-symlink me-1"></i>
         Preview in browser
-      </a>
+      </button>
     </div>
     <div class="d-none d-lg-block col col-md-auto">
       {{ new Date().toLocaleString() }}
@@ -28,26 +30,26 @@
 
 <script>
 import TemplateButton from "./TemplateButton.vue";
-import LoadingSpinner from './LoadingSpinner.vue';
+import LoadingSpinner from "./LoadingSpinner.vue";
 import { mapActions } from "vuex";
 
 export default {
   name: "TopHeader",
   components: {
     TemplateButton,
-    LoadingSpinner
+    LoadingSpinner,
   },
   data() {
     return {
-      loading: false
-    }
+      loading: false,
+    };
   },
   methods: {
     ...mapActions(["saveTemplate"]),
     async save() {
-      this.loading = true
+      this.loading = true;
       await this.saveTemplate();
-      this.loading = false
+      this.loading = false;
     },
   },
 };

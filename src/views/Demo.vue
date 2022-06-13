@@ -1,15 +1,42 @@
 <template>
-    <div>
-        demo view
-    </div>
+  <DemoTemplate v-if="!pageLoading" :newPopup="template" />
+  <div v-else class="loading">
+    <LoadingSpinner />
+  </div>
 </template>
 
 <script>
-    export default {
-        name: 'Demo'
-    }
+import DemoTemplate from "../components/DemoTemplate.vue";
+import LoadingSpinner from "../components/LoadingSpinner.vue";
+import { mapActions } from "vuex";
+
+export default {
+  name: "Demo",
+  components: {
+    DemoTemplate,
+    LoadingSpinner,
+  },
+  data() {
+    return {
+      pageLoading: true,
+      template: null,
+    };
+  },
+  async mounted() {
+    this.template = await this.fetchTemplate(this.$route.params.idem);
+    console.log("tem: ", this.template);
+    this.pageLoading = false;
+  },
+  methods: {
+    ...mapActions(["fetchTemplate"]),
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-
+.loading {
+  height: 100vh;
+  display: grid;
+  place-content: center;
+}
 </style>
