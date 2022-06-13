@@ -24,7 +24,6 @@ export default {
   },
   async mounted() {
     this.template = await this.fetchTemplate(this.$route.params.idem);
-    console.log("tem: ", this.template);
     this.pageLoading = false;
   },
   methods: {

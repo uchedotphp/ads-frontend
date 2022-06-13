@@ -46,7 +46,7 @@ export default {
   name: "DemoTemplate",
   props: {
     newPopup: {
-      type: Array,
+      type: Object,
       default: () => {},
     },
   },
