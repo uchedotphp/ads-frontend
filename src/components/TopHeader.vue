@@ -9,35 +9,38 @@
       <h2 class="title ms-2">Poptin test</h2>
     </div>
     <div class="col me-auto">
-      <TemplateButton @click="save" buttonSize="sm" class="save-template">
-        <span v-if="!loading"> Save template </span>
-        <LoadingSpinner v-else> Saving template... </LoadingSpinner>
-      </TemplateButton>
+      <button @click="save" class="btn save-template">
+        <span v-if="!loading" class="fw-bold"> Save template </span>
+        <LoadingSpinner size="sm" v-else> Saving template... </LoadingSpinner>
+      </button>
       <button
         :disabled="!currentTemplateIdem"
         v-if="!loading"
         @click="previewTemplate"
         class="preview-link btn"
       >
-        <i class="bi bi-folder-symlink me-1"></i>
         Preview in browser
       </button>
     </div>
     <div class="d-none d-lg-block col col-md-auto">
-      <a href="https://github.com/uchedotphp/poptin-frontend" target="_blank" type="button" class="btn btn-outline-primary">Github Repo</a>
+      <a
+        href="https://github.com/uchedotphp/poptin-frontend"
+        target="_blank"
+        type="button"
+        class="btn btn-outline-primary"
+        >Github Repo</a
+      >
     </div>
   </header>
 </template>
 
 <script>
-import TemplateButton from "./TemplateButton.vue";
 import LoadingSpinner from "./LoadingSpinner.vue";
 import { mapState, mapActions } from "vuex";
 
 export default {
   name: "TopHeader",
   components: {
-    TemplateButton,
     LoadingSpinner,
   },
   data() {
@@ -81,6 +84,8 @@ export default {
     width: fit-content;
     padding-inline: 20px;
     color: #ffffff;
+    outline: none;
+    border: none;
   }
   .preview-link {
     margin-left: 30px;
