@@ -1,30 +1,49 @@
 <template>
-  <div draggable="true" class="container active-element" @click.stop="activate">
+  <div
+    draggable="true"
+    class="container active-element"
+    @click.stop="activate"
+    @dragstart.stop="startDrag($event, element)"
+    @dragenter.prevent
+    @dragover.prevent
+  >
     <div class="opts">
-      <i :class="{'active': id == activeElementId}" class="bi bi-grip-horizontal " role="button"></i>
-      <i :class="{'active': id == activeElementId}" class="bi bi-x" role="button" @click="close"></i>
+      <i
+        :class="{ active: id == activeElementId }"
+        class="bi bi-grip-horizontal"
+        role="button"
+      ></i>
+      <i
+        :class="{ active: id == activeElementId }"
+        class="bi bi-x"
+        role="button"
+        @click="close"
+      ></i>
     </div>
-    <div class="slot" :class="{'active': id == activeElementId}">
+    <div class="slot" :class="{ active: id == activeElementId }">
       <slot />
     </div>
   </div>
 </template>
 
 <script>
-import {mapMutations, mapState} from "vuex";
+import { mapMutations, mapState, mapGetters } from "vuex";
 
 export default {
   name: "ActiveElement",
 
-  props:{
+  props: {
     id: {
       type: Number,
       default: 0,
-    }
+    },
   },
 
   computed: {
-    ...mapState(["activeElementId"]),
+    ...mapState(["activeElementId", "newPopup"]),
+    ...mapGetters({
+      getActiveTemplateElement: "getActiveTemplateElement",
+    }),
   },
 
   methods: {
@@ -36,9 +55,15 @@ export default {
 
     activate() {
       this.changeActiveElementId(this.id);
-      console.log('the id: ', typeof this.id);
-    }
-  }
+    },
+
+    startDrag(event) {
+      this.changeActiveElementId(this.id);
+      event.dataTransfer.dropEffect = "move";
+      event.dataTransfer.effectAllowed = "move";
+      event.dataTransfer.setData("itemId", this.id);
+    },
+  },
 };
 </script>
 
@@ -49,7 +74,7 @@ export default {
   transition: all 240ms;
 
   &:hover {
-    background-color: rgba(255,255,255,0.2);
+    background-color: rgba(255, 255, 255, 0.2);
   }
 }
 

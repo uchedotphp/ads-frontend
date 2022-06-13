@@ -1,5 +1,5 @@
 <template>
-  <div class="panel">
+  <div class="panel px-4">
     <ul class="nav main-nav">
       <li class="nav-item">
         <a class="nav-link pe-2" aria-current="page" href="#">My Popups</a>
