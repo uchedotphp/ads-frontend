@@ -1,0 +1,16 @@
+<template>
+<div class="d-flex align-items-center">
+  <div class="spinner-border" role="status"></div>
+  <span class="ms-2">
+    Saving template...
+  </span>
+</div>
+</template>
+
+<script>
+export default {
+  name: "LoadingSpinner",
+};
+</script>
+
+<style lang="scss" scoped></style>
