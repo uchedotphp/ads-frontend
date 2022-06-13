@@ -22,7 +22,7 @@
         Preview in browser
       </button>
     </div>
-    <div class="d-none d-lg-block col col-md-auto">
+    <div class="col col-md-auto">
       <a
         href="https://github.com/uchedotphp/poptin-frontend"
         target="_blank"
