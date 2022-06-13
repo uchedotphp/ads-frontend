@@ -2,9 +2,7 @@
 <div class="d-flex align-items-center">
   <div class="spinner-border" role="status"></div>
   <span class="ms-2">
-    <slot>
-      Saving template...
-    </slot>
+    <slot />
   </span>
 </div>
 </template>
