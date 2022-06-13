@@ -48,6 +48,7 @@ export default {
   .save-template {
     background: linear-gradient(0deg, #6a11cb, #2575fc) !important;
     padding-inline: 20px;
+    color: #ffffff;
   }
   .preview-link {
     margin-left: 30px;
