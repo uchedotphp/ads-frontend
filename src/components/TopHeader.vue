@@ -54,8 +54,12 @@ export default {
   methods: {
     ...mapActions(["saveTemplate"]),
     async save() {
-      this.loading = true;
-      await this.saveTemplate();
+      try {
+        this.loading = true;
+        await this.saveTemplate();
+      } catch (error) {
+        console.log(error);
+      }
       this.loading = false;
     },
     previewTemplate() {

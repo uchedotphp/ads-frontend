@@ -21,15 +21,6 @@ const store = createStore({
         state[key] = data[key];
       });
     },
-    setFetchedPopups(state, popups) {
-      state.popups = popups;
-    },
-    setSavedTemplate(state, popupElements) {
-      state.newPopup = popupElements;
-    },
-    updatePopups(state, popups) {
-      state.popups = popups;
-    },
     newStarDivider(state) {
       state.newPopup.children.push({
         id: state.newPopup.children.length + 1,
@@ -125,7 +116,9 @@ const store = createStore({
     async fetchPopups({ commit }) {
       try {
         const { data } = await apiConnect.getPopups();
-        commit("setFetchedPopups", data.popups.data);
+        commit("setStates", {
+          popups: data.popups.data
+        })
       } catch (error) {
         console.log("error occured fetching popups", error);
       }
