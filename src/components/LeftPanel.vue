@@ -37,24 +37,35 @@
     </template>
     <div class="row">
       <div class="col">Id</div>
-      <div class="col">Date</div>
+      <div class="col text-center">Date</div>
       <div class="col text-end">Action</div>
     </div>
-    <ul class="list-group row">
+    <ul v-if="popups.length" class="list-group row">
       <li
       v-for="popup in popups" :key="popup"
         class="list-group-item d-flex justify-content-between align-items-center col"
       >
-      {{ popup.idem }} ({{ new Date(popup.created_at).toLocaleString() }})
-        <i @click="useTemplate(popup.data)" class="bi bi-download" role="button"></i>
+      <span class="text-bold text-primary">
+        {{ popup.idem }}
+      </span>
+      <span class="text-center">
+      {{ new Date(popup.created_at).toLocaleString() }}
+      </span>
+      <span>
+        <i @click="useTemplate(popup.data)" class="bi bi-download text-primary" role="button"></i>
+        <i @click="deleteTemp(popup.id)" class="bi bi-trash ms-3 text-danger" role="button"></i>
+      </span>
       </li>
     </ul>
+    <p v-else class="text-center">
+      No save templates
+    </p>
   </ModalContent>
   </div>
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapMutations, mapActions } from "vuex";
 import { Modal } from "bootstrap/dist/js/bootstrap.bundle";
 import ModalContent from "./ModalContent.vue";
 
@@ -85,6 +96,7 @@ export default {
     ...mapState(["popups"]),
   },
   methods: {
+    ...mapActions(['deleteTemplate']),
     ...mapMutations([
       "newStarDivider",
       "newButton",
@@ -116,11 +128,13 @@ export default {
       }
     },
     showSavedTemplates() {
-      console.log("popups: ", this.popups);
       new Modal(document.getElementById("modalContent")).show();
     },
     useTemplate(template) {
       this.setSavedTemplate(template)
+    },
+    deleteTemp(id) {
+      this.deleteTemplate(id)
     }
   },
 };

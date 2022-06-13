@@ -16,11 +16,14 @@ const store = createStore({
 
   mutations: {
     setFetchedPopups(state, popups) {
-        console.log('setting: ', popups);
+      console.log("setting: ", popups);
       state.popups = popups;
     },
     setSavedTemplate(state, popupElements) {
-        state.newPopup = popupElements
+      state.newPopup = popupElements;
+    },
+    updatePopups(state, popups) {
+      state.popups = popups;
     },
     newStarDivider(state) {
       state.newPopup.children.push({
@@ -113,14 +116,21 @@ const store = createStore({
       }
     },
     async saveTemplate({ state }) {
-        try {
-            const data = await apiConnect.createPopup('firstTemp', state.newPopup);
-            console.log("saved: ", data);
-        } catch (error) {
-            console.log('error saving template', error);
-        }
-
-    }
+      try {
+        const data = await apiConnect.createPopup("firstTemp", state.newPopup);
+        console.log("saved: ", data);
+      } catch (error) {
+        console.log("error saving template", error);
+      }
+    },
+    async deleteTemplate({ dispatch }, id) {
+      try {
+        await apiConnect.deletePopup(id);
+        dispatch("fetchPopups");
+      } catch (error) {
+        console.log("error deleting template", error);
+      }
+    },
   },
 
   getters: {

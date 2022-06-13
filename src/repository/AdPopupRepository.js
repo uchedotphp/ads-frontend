@@ -20,7 +20,7 @@ export default {
     },
 
     async deletePopup(id) {
-        return http.post(`/popups/${id}`);
+        return http.delete(`/popups/${id}`);
     },
 
     async findPopup(id) {
