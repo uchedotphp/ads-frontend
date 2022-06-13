@@ -17,14 +17,14 @@
         :disabled="!currentTemplateIdem"
         v-if="!loading"
         @click="previewTemplate"
-        class="preview-link"
+        class="preview-link btn"
       >
         <i class="bi bi-folder-symlink me-1"></i>
         Preview in browser
       </button>
     </div>
     <div class="d-none d-lg-block col col-md-auto">
-      {{ new Date().toLocaleString() }}
+      <a href="https://github.com/uchedotphp/poptin-frontend" target="_blank" type="button" class="btn btn-outline-primary">Github Repo</a>
     </div>
   </header>
 </template>
