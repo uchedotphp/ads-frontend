@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { mapMutations, mapActions } from "vuex";
+import { mapMutations } from "vuex";
 import { Modal } from "bootstrap/dist/js/bootstrap.bundle";
 import ModalContent from "./ModalContent.vue";
 import SavedTemplates from "./SavedTemplates.vue";

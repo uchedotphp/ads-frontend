@@ -71,14 +71,14 @@ export default {
     ...mapState(["popups"]),
   },
   methods: {
-    ...mapMutations(["setStates", "setSavedTemplate"]),
+    ...mapMutations(["setStates"]),
     ...mapActions(["deleteTemplate"]),
     useTemplate(template, idem) {
       const theTemplate = this.popups.find((t) => t.idem === idem);
       this.setStates({
         currentTemplateIdem: theTemplate.idem,
+        newPopup: template
       });
-      this.setSavedTemplate(template);
     },
     async deleteTemp(id) {
       this.loading = true;
