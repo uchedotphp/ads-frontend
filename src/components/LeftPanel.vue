@@ -139,7 +139,7 @@ export default {
     useTemplate(template, idem) {
       const theTemplate = this.popups.find(t => t.idem === idem)
       this.setStates({
-        currentTemplateIdem:  theTemplate.idem
+        currentTemplateIdem: theTemplate.idem
       })
       this.setSavedTemplate(template);
     },

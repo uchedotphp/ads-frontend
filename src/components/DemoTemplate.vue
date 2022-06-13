@@ -11,26 +11,28 @@
             <br />
             Create a <a href="/"> new template</a>
           </p>
-          <template v-for="element in newPopup.children">
-            <TemplateButton
-              v-if="element.type === 'button'"
-              :bg-color="element.backgroundColor"
-              :text-color="element.color"
-              :size="element.size"
-              >{{ element.label }}</TemplateButton
-            >
-            <TemplateInput
-              v-else-if="element.type === 'input'"
-              :placeholder="element.placeholder"
-            />
+          <div class="max-w">
+            <template v-for="element in newPopup.children">
+              <TemplateButton
+                v-if="element.type === 'button'"
+                :bg-color="element.backgroundColor"
+                :text-color="element.color"
+                :size="element.size"
+                >{{ element.label }}</TemplateButton
+              >
+              <TemplateInput
+                v-else-if="element.type === 'input'"
+                :placeholder="element.placeholder"
+              />
 
-            <TemplateText
-              v-else-if="element.type === 'text'"
-              :content="element.text"
-              :size="element.size"
-              :color="element.color"
-            />
-          </template>
+              <TemplateText
+                v-else-if="element.type === 'text'"
+                :content="element.text"
+                :size="element.size"
+                :color="element.color"
+              />
+            </template>
+          </div>
         </div>
       </div>
     </div>
@@ -96,19 +98,21 @@ export default {
     border-radius: 99999px;
     display: grid;
     place-content: center;
+    .max-w {
+      max-width: 400px;
+      > * {
+        padding-bottom: 20px;
+      }
+      @media (max-width: 767.98px) {
+        max-height: 280px;
+        max-width: 280px;
+      }
 
-    > * {
-      padding-bottom: 10px;
-    }
-    @media (max-width: 767.98px) {
-      max-height: 280px;
-      max-width: 280px;
-    }
-
-    p {
-      font-size: 24px;
-      font-weight: 700;
-      color: white;
+      p {
+        font-size: 24px;
+        font-weight: 700;
+        color: white;
+      }
     }
   }
 }
