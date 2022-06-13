@@ -18,7 +18,6 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 - Saving elements on the preview screen as templates.
 - Fetching already saved templates.
 - implanting 1 line of js script code on any web page that will load the popup customized in the editor in the last save.
-- 
 
 
 
