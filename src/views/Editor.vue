@@ -1,10 +1,13 @@
 <template>
   <section class="container-fluid d-flex flex-column">
-    <TopHeader />
+    <TopHeader class="d-none" />
     <div class="row content flex-grow-1">
       <LeftPanel class="col-12 col-sm-3 col-lg-2" />
       <PreviewScreen class="col-auto col-md" />
       <RightPanel class="col-6 col-sm-4 col-lg-3" />
+
+      <!-- mobile only -->
+      <TopHeader class="d-md-none" />
     </div>
   </section>
 </template>
