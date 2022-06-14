@@ -46,10 +46,7 @@ export default {
 <style lang="scss" scoped>
 .prop-editor {
   position: relative;
-
-  svg {
-    // display: none;
-  }
+  z-index: 5;
 
   @media (max-width: 768px) {
     margin-top: 0;
