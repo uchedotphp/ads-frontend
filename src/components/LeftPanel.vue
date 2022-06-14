@@ -12,7 +12,7 @@
         <i class="bi bi-cloud-download"></i>
       </li>
       <li class="nav-item">
-        <a class="nav-link pe-2" href="#">Draft</a>
+        <a @click="showDraft" class="nav-link pe-2" href="#">Draft</a>
         <i class="bi bi-pencil-square"></i>
       </li>
     </ul>
@@ -30,13 +30,21 @@
     </ul>
 
     <!-- modal -->
-    <ModalContent id="modalContent">
+    <ModalContent id="savedTemplates">
       <template #title>
-        <h5 class="fw-semibold">
-          Saved templates
-        </h5>
+        <h5 class="fw-semibold">Saved templates</h5>
       </template>
       <SavedTemplates />
+    </ModalContent>
+
+    <ModalContent id="drafts">
+      <template #title>
+        <h5 class="fw-semibold">Templates in draft</h5>
+      </template>
+      <h6 class="text-center text-bold text-primary">
+        No save templates. <br />
+        Currently edited templates will appear here.
+      </h6>
     </ModalContent>
   </div>
 </template>
@@ -76,7 +84,7 @@ export default {
       "newStarDivider",
       "newButton",
       "newText",
-      "newInputField"
+      "newInputField",
     ]),
     action(elementTitle) {
       const element = elementTitle.title.toLowerCase();
@@ -102,8 +110,11 @@ export default {
       }
     },
     showSavedTemplates() {
-      new Modal(document.getElementById("modalContent")).show();
+      new Modal(document.getElementById("savedTemplates")).show();
     },
+    showDraft() {
+      new Modal(document.getElementById("drafts")).show();
+    }
   },
 };
 </script>
