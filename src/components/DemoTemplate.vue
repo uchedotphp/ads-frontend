@@ -90,7 +90,11 @@ export default {
 
   .header {
     padding: 20px 50px;
+    margin: 0;
     box-shadow: 0px 15px 23px rgba(208, 210, 218, 0.6);
+    @media (max-width: 767.98px) {
+      padding-inline: 30px;
+    }
   }
 }
 .shadow-host {

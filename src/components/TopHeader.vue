@@ -1,6 +1,6 @@
 <template>
-  <header class="top-header d-none d-sm-flex row align-items-center">
-    <div class="logo-area col-3 col-lg-2 d-flex align-items-center">
+  <header class="top-header d-sm-flex row align-items-center">
+    <div class="logo-area d-none col-3 col-lg-2 d-sm-flex align-items-center">
       <img
         src="../assets/images/poptin-logo.png"
         height="40"
@@ -19,10 +19,10 @@
         @click="previewTemplate"
         class="preview-link btn"
       >
-        Preview in browser
+        Preview <span class="d-none d-sm-inline"> in browser </span>
       </button>
     </div>
-    <div class="col col-md-auto">
+    <div class="col-auto">
       <a
         href="https://github.com/uchedotphp/poptin-frontend"
         target="_blank"
@@ -77,6 +77,10 @@ export default {
   background-color: white;
   padding: 20px 50px;
   box-shadow: 0px 15px 23px rgba(208, 210, 218, 0.6);
+
+  @media (max-width: 767.98px) {
+    padding-inline: 10px;
+  }
 
   .logo-area {
     .title {
