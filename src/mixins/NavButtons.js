@@ -22,6 +22,10 @@ export default {
           type: "Input",
           icon: "bi-textarea-resize",
         },
+        {
+          type: "Spacer",
+          icon: "bi-hr",
+        },
       ],
     };
   },

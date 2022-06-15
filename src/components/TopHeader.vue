@@ -30,10 +30,19 @@
           :disabled="!currentTemplateIdem"
           v-if="!loading"
           @click="previewTemplate"
-          class="preview-link btn"
+          class="preview-link btn d-none"
         >
           Preview
         </button>
+        <button
+          :disabled="!currentTemplateIdem"
+          v-if="!loading"
+          @click="previewTemplate"
+          class="preview-link btn d-sm-none"
+        >
+          <i style="font-size: 20px;" class="bi bi-layout-text-window text-dark fw-bold"></i>
+        </button>
+        
       </div>
       <div class="d-none d-sm-block col-auto">
         <!-- <a
