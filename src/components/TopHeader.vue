@@ -8,9 +8,9 @@
       />
       <h2 class="title ms-2">Poptin test</h2>
     </div>
-    <div class="col d-flex align-items-center justify-content-center">
-      <i role="button" class="bi bi-arrow-clockwise text-danger me-3" style="font-size: 2rem;"></i>
-      <button @click="save" class="btn btn-outline-primary save-template">
+    <div class="col d-flex align-items-center justify-content-start justify-content-sm-center">
+      <i class="bi bi-arrow-clockwise text-danger me-3" style="font-size: 2rem;"></i>
+      <button @click="save" class="btn btn-outline-primary save-template me-auto me-sm-0 text-truncate">
         <template v-if="!loading">
           <i style="font-size: 1rem" class="bi bi-cloud-slash"></i>
           <span class="fw-bold"> Unsaved changes </span>
@@ -26,7 +26,7 @@
         Preview
       </button>
     </div>
-    <div class="col-auto">
+    <div class="d-none d-sm-block col-auto">
       <!-- <a
         href="https://github.com/uchedotphp/poptin-frontend"
         target="_blank"
@@ -64,6 +64,9 @@ export default {
     ...mapState(["currentTemplateIdem"]),
   },
   methods: {
+    clicking() {
+      console.log('clicking');
+    },
     ...mapActions(["saveTemplate"]),
     async save() {
       try {

@@ -1,15 +1,15 @@
 <template>
-  <nav class="sidebar">
+  <div class="sidebar">
     <div class="box">
       <div class="py-2 d-flex flex-column align-items-center">
-        <div class="flex-grow-1 px-2 mt-2">
+        <div class="flex-grow-1">
           <button
             @click="selectMenu(index)"
-            v-for="(menu, index) in menuItems"
+            v-for="(menu, index) in navButtons"
             :key="index"
             :class="[
               { active: activeMenu === index },
-              'btn d-flex flex-column align-items-center fw-semibold',
+              'btn d-flex flex-column align-items-center fw-semibold nav-btn',
             ]"
           >
             <template v-if="index === 1">
@@ -37,92 +37,49 @@
         </div>
       </div>
     </div>
-  </nav>
+
+    <!-- extra sidebar -->
+    <ExtraLeftSidebar v-if="openExtraLeftSideMenu" />
+  </div>
 </template>
 
 <script>
+import ExtraLeftSidebar from "./ExtraLeftSidebar.vue";
+import NavButtons from "../../mixins/NavButtons";
 export default {
-  name: "SidebarMenu",
+  name: "LeftSidebarMenu",
+  mixins: [NavButtons],
+  components: { ExtraLeftSidebar },
   data() {
     return {
+      openExtraLeftSideMenu: false,
       activeMenu: null,
-      menuItems: [
-        {
-          type: "Templates",
-          icon: "bi-layout-text-window",
-        },
-        {
-          type: "Icons",
-          icon: "bi-layout-text-window",
-        },
-        {
-          type: "Text",
-          icon: "bi-textarea-t",
-        },
-        {
-          type: "Button",
-          icon: "bi-menu-button-wide-fill",
-        },
-        {
-          type: "Input",
-          icon: "bi-textarea-resize",
-        },
-      ],
     };
   },
   methods: {
     selectMenu(index) {
       this.activeMenu = index;
+      if (index === 0) {
+        this.openExtraLeftSideMenu = !this.openExtraLeftSideMenu;
+      } else {
+        this.openExtraLeftSideMenu = false;
+      }
     },
   },
 };
 </script>
 
 <style lang="scss" scoped>
-a {
-  text-decoration: none;
-}
 .sidebar {
   background-color: rgb(67 56 202);
   width: 112px;
+  position: relative;
+  padding-inline: 0;
 
   .box {
     height: 100%;
     overflow-y: auto;
     margin-top: 80px;
-
-    .btn {
-      color: rgb(224 231 255);
-      width: 100%;
-      border-radius: 6px;
-      padding: 12px;
-      font-size: 12px;
-
-      .bi,
-      svg {
-        color: rgb(165 180 252);
-        font-size: 20px;
-        height: 20px;
-      }
-      &:hover {
-        background-color: rgb(55 48 163);
-        color: #ffffff;
-
-        .bi,
-        svg {
-          color: #ffffff;
-        }
-      }
-
-      &.active {
-        background-color: rgb(55 48 163);
-        color: #ffffff;
-        .bi,
-        svg {
-          color: #ffffff;
-        }
-      }
-    }
   }
 }
 </style>

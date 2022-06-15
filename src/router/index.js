@@ -2,10 +2,19 @@ import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
   {
+    // path: "/",
+    // name: "Editor",
+    // component: () =>
+    //   import(/* webpackChunkName: "Editor" */ "../views/Editor.vue"),
     path: "/",
-    name: "Editor",
-    component: () =>
-      import(/* webpackChunkName: "Editor" */ "../views/Editor.vue"),
+    component: () => import("../layouts/MainLayout.vue"),
+    children: [
+      {
+        path: "/",
+        name: "Editor",
+        component: () => import(/* webpackChunkName: "Editor" */ "../views/Editor.vue"),
+      },
+    ],
   },
   {
     path: "/demo/:idem",
