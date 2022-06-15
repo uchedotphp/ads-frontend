@@ -40,9 +40,11 @@
           @click="previewTemplate"
           class="preview-link btn d-sm-none"
         >
-          <i style="font-size: 20px;" class="bi bi-layout-text-window text-dark fw-bold"></i>
+          <i
+            style="font-size: 20px"
+            class="bi bi-layout-text-window text-dark fw-bold"
+          ></i>
         </button>
-        
       </div>
       <div class="d-none d-sm-block col-auto">
         <!-- <a
@@ -105,8 +107,9 @@ export default {
 <style lang="scss" scoped>
 .top-header {
   background-color: white;
-  padding: 20px 30px;
-  box-shadow: 0px 15px 23px rgba(208, 210, 218, 0.6);
+  padding: 10px 30px;
+  // box-shadow: 0px 15px 23px rgba(208, 210, 218, 0.6);
+  border-bottom: 1px solid #EBECF0;
 
   .logo-area {
     .title {

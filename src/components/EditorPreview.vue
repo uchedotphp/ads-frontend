@@ -8,7 +8,7 @@
         />
         <TemplateInput />
         <TemplateButton>SIGNUP NOW</TemplateButton>
-        <TemplateText content="No credit card required. No Surprise" />
+        <TemplateText font-size="15px" :font-weight="400" content="No credit card required. No Surprise" />
       </div>
     </div>
   </div>
@@ -52,6 +52,8 @@ export default {
     flex: 1;
     display: grid;
     place-content: center;
+    // justify-content: center;
+    // padding-top: 2em;
     margin: 10px;
 
     .max-w {
