@@ -6,6 +6,7 @@
       :key="index"
       :class="[
         { active: activeMenu === index },
+        {'d-none' : index === 0},
         'btn d-flex flex-column align-items-center fw-semibold nav-btn',
       ]"
     >

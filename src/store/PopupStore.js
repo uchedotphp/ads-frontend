@@ -10,7 +10,37 @@ const store = createStore({
       currentTemplateIdem: null,
       newPopup: {
         backgroundColor: "#e85e5b",
-        children: [],
+        children: [
+          {
+            id: 1,
+            type: "text",
+            size: "lg",
+            text: "All text and elements in this popup should be editable and draggable",
+            color: "#ffffff",
+          },
+          {
+            id: 2,
+            type: "input",
+            placeholder: "Email",
+            color: "#ffffff",
+          },
+          {
+            id: 3,
+            type: "button",
+            backgroundColor: "#000000",
+            label: "SIGNUP NOW",
+            size: "md",
+            truncate: false,
+            color: "#ffffff",
+          },
+          {
+            id: 4,
+            type: "text",
+            size: "sm",
+            text: "No credit card required. No Surprise",
+            color: "#ffffff",
+          },
+        ],
       },
     };
   },
@@ -106,7 +136,7 @@ const store = createStore({
         const index = state.newPopup.children.findIndex(
           (t) => t.id === elementIdToBeMoved
         );
-        const element = state.newPopup.children.splice(index, 1)[0]
+        const element = state.newPopup.children.splice(index, 1)[0];
         state.newPopup.children.splice(targetElementId, 0, element);
       }
     },
@@ -117,8 +147,8 @@ const store = createStore({
       try {
         const { data } = await apiConnect.getPopups();
         commit("setStates", {
-          popups: data.popups.data
-        })
+          popups: data.popups.data,
+        });
       } catch (error) {
         console.log("error occured fetching popups", error);
       }
