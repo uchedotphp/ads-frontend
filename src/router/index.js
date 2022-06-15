@@ -5,7 +5,7 @@ const routes = [
     path: "/",
     name: "Editor",
     component: () =>
-      import(/* webpackChunkName: "Editor" */ "../views/Editor.vue"),
+      import(/* webpackChunkName: "Editor" */ "../layouts/MainLayout.vue"),
   },
   {
     path: "/demo/:idem",

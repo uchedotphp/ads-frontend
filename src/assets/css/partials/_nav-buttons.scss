@@ -1,0 +1,32 @@
+.nav-btn {
+  color: rgb(224 231 255);
+  width: 100%;
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 12px;
+
+  .bi,
+  svg {
+    color: rgb(165 180 252);
+    font-size: 20px;
+    height: 20px;
+  }
+  &:hover {
+    background-color: rgb(55 48 163);
+    color: #ffffff;
+
+    .bi,
+    svg {
+      color: #ffffff;
+    }
+  }
+
+  &.active {
+    background-color: rgb(55 48 163);
+    color: #ffffff;
+    .bi,
+    svg {
+      color: #ffffff;
+    }
+  }
+}
