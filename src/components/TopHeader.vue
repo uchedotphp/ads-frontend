@@ -1,47 +1,53 @@
 <template>
-  <header class="top-header d-sm-flex row align-items-center">
-    <div class="logo-area d-none col-auto d-sm-flex align-items-center">
-      <img
-        src="../assets/images/poptin-logo.png"
-        height="40"
-        alt="poptin logo"
-      />
-      <h2 class="title ms-2">Poptin test</h2>
-    </div>
-    <div class="col d-flex align-items-center justify-content-start justify-content-sm-center">
-      <i class="bi bi-arrow-clockwise text-danger me-3" style="font-size: 2rem;"></i>
-      <button @click="save" class="btn btn-outline-primary save-template me-auto me-sm-0 text-truncate">
-        <template v-if="!loading">
-          <i style="font-size: 1rem" class="bi bi-cloud-slash"></i>
-          <span class="fw-bold"> Unsaved changes </span>
-        </template>
-        <LoadingSpinner size="sm" v-else> Saving template... </LoadingSpinner>
-      </button>
-      <button
-        :disabled="!currentTemplateIdem"
-        v-if="!loading"
-        @click="previewTemplate"
-        class="preview-link btn"
+  <header class="top-header">
+    <div class="d-sm-flex row align-items-center">
+      <div class="logo-area d-none col-auto d-sm-flex align-items-center">
+        <img
+          src="../assets/images/poptin-logo.png"
+          height="40"
+          alt="poptin logo"
+        />
+        <h2 class="title ms-2">Poptin test</h2>
+      </div>
+      <div
+        class="col d-flex align-items-center justify-content-start justify-content-sm-center"
       >
-        Preview
-      </button>
-    </div>
-    <div class="d-none d-sm-block col-auto">
-      <!-- <a
+        <i
+          class="bi bi-arrow-clockwise text-danger me-3"
+          style="font-size: 2rem"
+        ></i>
+        <button
+          @click="save"
+          class="btn btn-outline-primary save-template me-auto me-sm-0 text-truncate"
+        >
+          <template v-if="!loading">
+            <i style="font-size: 1rem" class="bi bi-cloud-slash"></i>
+            <span class="fw-bold"> Unsaved changes </span>
+          </template>
+          <LoadingSpinner size="sm" v-else> Saving template... </LoadingSpinner>
+        </button>
+        <button
+          :disabled="!currentTemplateIdem"
+          v-if="!loading"
+          @click="previewTemplate"
+          class="preview-link btn"
+        >
+          Preview
+        </button>
+      </div>
+      <div class="d-none d-sm-block col-auto">
+        <!-- <a
         href="https://github.com/uchedotphp/poptin-frontend"
         target="_blank"
         type="button"
         class="btn btn-outline-primary"
         >Github Repo</a
       > -->
-      <button
-        disabled
-        type="button"
-        class="col-auto btn btn-outline-success"
-      >
-        <i class="bi bi-back me-1"></i>
-        Copy script
-      </button>
+        <button disabled type="button" class="col-auto btn btn-outline-success">
+          <i class="bi bi-back me-1"></i>
+          Copy script
+        </button>
+      </div>
     </div>
   </header>
 </template>
@@ -65,7 +71,7 @@ export default {
   },
   methods: {
     clicking() {
-      console.log('clicking');
+      console.log("clicking");
     },
     ...mapActions(["saveTemplate"]),
     async save() {
@@ -90,12 +96,8 @@ export default {
 <style lang="scss" scoped>
 .top-header {
   background-color: white;
-  padding: 20px 10px;
+  padding: 20px 30px;
   box-shadow: 0px 15px 23px rgba(208, 210, 218, 0.6);
-
-  @media (max-width: 767.98px) {
-    padding-inline: 10px;
-  }
 
   .logo-area {
     .title {

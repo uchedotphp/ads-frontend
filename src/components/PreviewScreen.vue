@@ -121,7 +121,7 @@ export default {
   .inner-content {
     margin: 10px;
     flex: 1;
-    overflow: auto;
+    overflow: hidden;
     border: 3px solid white;
     max-height: 480px;
     max-width: 480px;
