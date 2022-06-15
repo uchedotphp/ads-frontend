@@ -1,15 +1,8 @@
 <template>
-  <!-- <div
-    :style="`color: ${color}; font-size: ${fontSize}; font-weight: ${fontWeight}`"
-    class="template-content-editable"
-    contenteditable="true"
-    @input="updateText"
-  >
-    {{ content }}
-  </div> -->
   <p
+  class="template-content-editable"
     contenteditable="true"
-    style="font-size: 30px; font-weight: 600; color: white"
+    :style="`color: ${color}; font-size: ${fontSize}; font-weight: ${fontWeight}`"
   >
     {{ content }}
   </p>
@@ -26,49 +19,22 @@ export default {
       type: String,
       required: true,
     },
+    fontSize: {
+      type: String,
+      default: "30px",
+    },
+    fontWeight: {
+      type: Number,
+      default: 600,
+    },
     color: {
       type: String,
-      default: "#999",
-    },
-    size: {
-      type: String,
-      default: "md",
-    },
-  },
-  data() {
-    return {
-      text: "text",
-    };
-  },
-  computed: {
-    fontSize() {
-      if (this.size == "sm") {
-        return "14px";
-      } else if (this.size == "lg") {
-        return "26px";
-      }
-      return "16px";
-    },
-    fontWeight() {
-      let weight;
-      switch (this.fontSize === "14px") {
-        case "14px":
-          weight = 400;
-          break;
-
-        case "16px":
-          weight = 500;
-          break;
-
-        case "26px":
-          weight = 700;
-          break;
-
-        default:
-          break;
-      }
-      return weight;
-    },
+      default: "#ffffff",
+    }
+    // size: {
+    //   type: String,
+    //   default: "md",
+    // },
   },
   methods: {
     // ...mapMutations(["updateActiveElementProperty"]),
@@ -92,7 +58,7 @@ export default {
 
 <style lang="scss" scoped>
 .template-content-editable {
-  line-height: 26.23px;
+  // line-height: 26.23px;
   text-align: center;
   &:focus {
     outline: none;
