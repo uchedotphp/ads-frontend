@@ -4,10 +4,11 @@
     <div class="col">
       <div class="row d-flex flex-column" style="height: 100%">
         <TopHeader class="col-auto" />
-        <PropertyOption class="col-auto" />
+        <PropertyOption class="col-auto" v-if="!pageLoading" />
         <div class="col preview">
           <main class="content">
-            <EditorPreview />
+            <EditorPreview v-if="!pageLoading" />
+            <LoadingSpinner v-else />
           </main>
         </div>
         <BottomNav class="d-sm-none col-auto" />
@@ -22,16 +23,22 @@ import BottomNav from "../components/navigations/BottomNav.vue";
 import TopHeader from "../components/TopHeader.vue";
 import EditorPreview from "../components/EditorPreview.vue";
 import PropertyOption from "../components/PropertyOption.vue";
+import { mapState } from "vuex";
+import LoadingSpinner from '../components/LoadingSpinner.vue';
 
 export default {
+  name: "MainLayout",
   components: {
     TopHeader,
     LeftSidebarMenu,
     BottomNav,
     EditorPreview,
     PropertyOption,
+    LoadingSpinner,
   },
-  name: "MainLayout",
+  computed: {
+    ...mapState(["pageLoading"]),
+  },
 };
 </script>
 

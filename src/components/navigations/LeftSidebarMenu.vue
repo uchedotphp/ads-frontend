@@ -4,6 +4,7 @@
       <div class="py-2 d-flex flex-column align-items-center">
         <div class="flex-grow-1">
           <button
+            :disabled="pageLoading"
             @click="selectMenu(index)"
             v-for="(menu, index) in navButtons"
             :key="index"
@@ -46,6 +47,8 @@
 <script>
 import ExtraLeftSidebar from "./ExtraLeftSidebar.vue";
 import NavButtons from "../../mixins/NavButtons";
+import { mapState } from "vuex";
+
 export default {
   name: "LeftSidebarMenu",
   mixins: [NavButtons],
@@ -55,6 +58,9 @@ export default {
       openExtraLeftSideMenu: false,
       activeMenu: null,
     };
+  },
+  computed: {
+    ...mapState(["pageLoading"]),
   },
   methods: {
     selectMenu(index) {

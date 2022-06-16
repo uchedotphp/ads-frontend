@@ -5,7 +5,8 @@ import apiConnect from "../repository/AdPopupRepository";
 const store = createStore({
   state() {
     return {
-      popups: [], // change to templateHistory
+      pageLoading: false,
+      templateHistory: [],
       activeElementId: 0,
       currentTemplateIdem: null,
       newPopup: {
