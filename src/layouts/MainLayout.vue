@@ -39,7 +39,7 @@ export default {
 .preview {
   display: grid;
   place-content: center;
-  background-color: #EBECF0;
+  // background-color: #EBECF0;
 
   .content {
     max-width: 800px;

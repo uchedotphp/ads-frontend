@@ -13,19 +13,26 @@ const store = createStore({
         children: [
           {
             id: 1,
+            type: "icon",
+            // size: "lg",
+            // text: "All text and elements in this popup should be editable and draggable",
+            // color: "#ffffff",
+          },
+          {
+            id: 2,
             type: "text",
             size: "lg",
             text: "All text and elements in this popup should be editable and draggable",
             color: "#ffffff",
           },
           {
-            id: 2,
+            id: 3,
             type: "input",
             placeholder: "Email",
             color: "#ffffff",
           },
           {
-            id: 3,
+            id: 4,
             type: "button",
             backgroundColor: "#000000",
             label: "SIGNUP NOW",
@@ -34,7 +41,7 @@ const store = createStore({
             color: "#ffffff",
           },
           {
-            id: 4,
+            id: 5,
             type: "text",
             size: "sm",
             text: "No credit card required. No Surprise",
@@ -100,7 +107,7 @@ const store = createStore({
         return el.id !== id;
       });
 
-      this.commit("reIndex");
+      // this.commit("reIndex");
 
       if (state.activeElementId === id) {
         this.commit("changeActiveElementId", 0);
@@ -125,20 +132,21 @@ const store = createStore({
       });
     },
 
-    reIndex(state) {
-      for (let i = 0; i < state.newPopup.children.length; i++) {
-        state.newPopup.children[i].id = i + 1;
-      }
-    },
+    // reIndex(state) {
+    //   for (let i = 0; i < state.newPopup.children.length; i++) {
+    //     state.newPopup.children[i].id = i + 1;
+    //   }
+    // },
 
     swapElements(state, { elementIdToBeMoved, targetElementId }) {
-      if (elementIdToBeMoved !== targetElementId) {
-        const index = state.newPopup.children.findIndex(
-          (t) => t.id === elementIdToBeMoved
-        );
-        const element = state.newPopup.children.splice(index, 1)[0];
-        state.newPopup.children.splice(targetElementId, 0, element);
-      }
+      const index = state.newPopup.children.findIndex(
+        (e) => e.id === elementIdToBeMoved
+      );
+      const targetElementIndex = state.newPopup.children.findIndex(
+        (e) => e.id === targetElementId
+      );
+      const element = state.newPopup.children.splice(index, 1)[0];
+      state.newPopup.children.splice(targetElementIndex, 0, element);
     },
   },
 

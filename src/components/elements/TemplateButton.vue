@@ -12,6 +12,12 @@ import {mapGetters} from "vuex";
 
 export default {
   name: "TemplateButton",
+  props: {
+    id: {
+      type: Number,
+      required: true
+    },
+  },
   computed: {
     ...mapGetters({
       getActiveTemplateElement: "getActiveTemplateElement",

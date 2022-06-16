@@ -8,6 +8,10 @@
 export default {
   name: "TemplateInput",
   props: {
+    id: {
+      type: Number,
+      required: true
+    },
     placeholder: {
       type: String,
       default: "E-mail",

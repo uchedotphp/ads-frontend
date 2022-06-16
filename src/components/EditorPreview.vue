@@ -1,14 +1,48 @@
 <template>
-  <div class="canvas card">
+  <div class="canvas card" :style="`background-color: ${bgColor}`">
     <div class="inner-content">
       <div class="max-w">
-        <TemplateIcons />
+        <!-- when palette is empty -->
         <TemplateText
-          content="All text and elements in this popup should be editable and draggable"
+          v-if="currentTemplate.children.length === 0"
+          content="Click on an element to add them here."
         />
-        <TemplateInput />
-        <TemplateButton>SIGNUP NOW</TemplateButton>
-        <TemplateText font-size="15px" :font-weight="400" content="No credit card required. No Surprise" />
+        <template
+          v-for="(element, index) in currentTemplate.children"
+          :key="index"
+        >
+          <ActiveElement
+            v-if="element.type === 'icon'"
+            :id="element.id"
+            :targetElementId="element.id"
+          >
+            <TemplateIcons :id="element.id" />
+          </ActiveElement>
+
+          <ActiveElement
+            v-else-if="element.type === 'text'"
+            :id="element.id"
+            :targetElementId="element.id"
+          >
+            <TemplateText :content="element.text" :id="element.id" />
+          </ActiveElement>
+
+          <ActiveElement
+            v-else-if="element.type === 'input'"
+            :id="element.id"
+            :targetElementId="element.id"
+          >
+            <TemplateInput :id="element.id" />
+          </ActiveElement>
+
+          <ActiveElement
+            v-else-if="element.type === 'button'"
+            :id="element.id"
+            :targetElementId="element.id"
+          >
+            <TemplateButton :id="element.id">SIGNUP NO</TemplateButton>
+          </ActiveElement>
+        </template>
       </div>
     </div>
   </div>
@@ -18,7 +52,9 @@
 import TemplateInput from "./elements/TemplateInput.vue";
 import TemplateButton from "./elements/TemplateButton.vue";
 import TemplateText from "./elements/TemplateText.vue";
-import TemplateIcons from './elements/TemplateIcons.vue';
+import TemplateIcons from "./elements/TemplateIcons.vue";
+import ActiveElement from "./ActiveElement.vue";
+import { mapState } from "vuex";
 
 export default {
   name: "EditorPreview",
@@ -26,14 +62,20 @@ export default {
     TemplateInput,
     TemplateButton,
     TemplateText,
-    TemplateIcons
+    TemplateIcons,
+    ActiveElement,
+  },
+  computed: {
+    ...mapState({
+      currentTemplate: (state) => state.newPopup,
+      bgColor: (state) => state.newPopup.backgroundColor,
+    }),
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .canvas {
-  background: #e85e5b;
   display: flex;
   height: 494px;
   width: 494px;

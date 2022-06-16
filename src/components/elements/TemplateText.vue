@@ -15,6 +15,10 @@ export default {
   name: "TemplateText",
   emits: ["update:textValue"],
   props: {
+    id: {
+      type: Number,
+      required: true
+    },
     content: {
       type: String,
       required: true,

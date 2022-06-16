@@ -4,7 +4,9 @@
       <button type="button" class="btn bg-light text-dark btn-outline-dark">
         <i class="bi bi-dash"></i>
       </button>
-      <button type="button" class="btn bg-light text-dark btn-outline-dark">60</button>
+      <button type="button" class="btn bg-light text-dark btn-outline-dark">
+        60
+      </button>
       <button type="button" class="btn bg-light text-dark btn-outline-dark">
         <i class="bi bi-plus"></i>
       </button>
@@ -33,9 +35,7 @@
     </div>
 
     <button class="btn px-0 py-0">
-      <span>
-        <div class="bgColor"></div>
-      </span>
+      <div class="bgColor"></div>
     </button>
 
     <button class="btn ms-auto px-0">
