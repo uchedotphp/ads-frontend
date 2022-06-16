@@ -27,7 +27,7 @@
           <LoadingSpinner size="sm" v-else> Saving template... </LoadingSpinner>
         </button>
         <button
-          :disabled="!currentTemplateIdem"
+          :disabled="pageLoading"
           v-if="!loading"
           @click="previewTemplate"
           class="preview-link btn d-none"
@@ -35,9 +35,8 @@
           Preview
         </button>
         <button
-          :disabled="!currentTemplateIdem"
-          v-if="!loading"
-          @click="previewTemplate"
+          :disabled="pageLoading || loading"
+          @click="openTemplateHistory"
           class="preview-link btn d-sm-none"
         >
           <i
@@ -60,17 +59,30 @@
         </button>
       </div>
     </div>
+
+    <!-- modal -->
+    <ModalContent id="savedTemplates">
+      <template #title>
+        <h5 class="fw-semibold">Saved templates</h5>
+      </template>
+      <SavedTemplates />
+    </ModalContent>
   </header>
 </template>
 
 <script>
 import LoadingSpinner from "./LoadingSpinner.vue";
+import ModalContent from './ModalContent.vue';
+import SavedTemplates from './SavedTemplates.vue';
+import { Modal } from "bootstrap/dist/js/bootstrap.bundle";
 import { mapState, mapActions } from "vuex";
 
 export default {
   name: "TopHeader",
   components: {
     LoadingSpinner,
+    ModalContent,
+    SavedTemplates
   },
   data() {
     return {
@@ -95,11 +107,14 @@ export default {
       this.loading = false;
     },
     previewTemplate() {
-      this.$router.push({
-        name: "Demo",
-        params: { idem: this.currentTemplateIdem },
-      });
+      // this.$router.push({
+      //   name: "Demo",
+      //   params: { idem: this.currentTemplateIdem },
+      // });
     },
+    openTemplateHistory() {
+      new Modal(document.getElementById("savedTemplates")).show();
+    }
   },
 };
 </script>
