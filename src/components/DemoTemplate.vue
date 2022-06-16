@@ -38,17 +38,17 @@
                   :size="element.size"
                   >{{ element.label }}</TemplateButton
                 >
-                <TemplateInput
+                <!-- <TemplateInput
                   v-else-if="element.type === 'input'"
                   :placeholder="element.placeholder"
-                />
+                /> -->
 
-                <TemplateText
+                <!-- <TemplateText
                   v-else-if="element.type === 'text'"
                   :content="element.text"
                   :size="element.size"
                   :color="element.color"
-                />
+                /> -->
               </template>
             </div>
           </div>
@@ -60,8 +60,8 @@
 
 <script>
 import TemplateButton from "./TemplateButton.vue";
-import TemplateInput from "./TemplateInput.vue";
-import TemplateText from "./TemplateText.vue";
+// import TemplateInput from "./TemplateInput.vue";
+// import TemplateText from "./TemplateText.vue";
 
 export default {
   name: "DemoTemplate",
@@ -72,8 +72,8 @@ export default {
     },
   },
   components: {
-    TemplateText,
-    TemplateInput,
+    // TemplateText,
+    // TemplateInput,
     TemplateButton,
   },
   methods: {
