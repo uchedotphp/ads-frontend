@@ -22,13 +22,13 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 
 
 **Current possibilities of the app:**
-> - [x] Adding new elements to the preview screen.
+> - [ ] Adding new elements to the preview screen.
 >
-> - [x] Removing elements on the preview screen.
+> - [ ] Removing elements on the preview screen.
 > 
 > - [x] Drag and drop of elements on preview screen.
 >
-> - [x] Customizing elements on the preview screen.
+> - [ ] Customizing elements on the preview screen.
 >
 > - [x] Mobile responsiveness.
 > 
