@@ -1,31 +1,34 @@
 <template>
-  <nav class="extra-sidebar py-5">
-    <ul class="list-group">
-      <li
-        class="list-group-item d-flex justify-content-between align-items-center"
-      >
-        A list item
-        <span class="badge bg-primary rounded-pill">14</span>
-      </li>
-      <li
-        class="list-group-item d-flex justify-content-between align-items-center"
-      >
-        A second list item
-        <span class="badge bg-primary rounded-pill">2</span>
-      </li>
-      <li
-        class="list-group-item d-flex justify-content-between align-items-center"
-      >
-        A third list item
-        <span class="badge bg-primary rounded-pill">1</span>
-      </li>
-    </ul>
+  <nav class="extra-sidebar py-5 px-3">
+    <p class="text-center fw-semibold pb-2">Saved Templates</p>
+    <SavedTemplates v-if="!loadingData" />
+    <div v-else class="loading-data">
+      <LoadingSpinner />
+    </div>
   </nav>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+import LoadingSpinner from "../LoadingSpinner.vue";
+import SavedTemplates from "../SavedTemplates.vue";
 export default {
-  name: "ExtraSidebar"
+  components: { LoadingSpinner, SavedTemplates },
+  name: "ExtraSidebar",
+  data() {
+    return {
+      loadingData: false,
+      hoverIndex: null,
+    };
+  },
+  async mounted() {
+    this.loadingData = true;
+    await this.fetchSavedTemplates();
+    this.loadingData = false;
+  },
+  methods: {
+    ...mapActions(["fetchSavedTemplates"]),
+  },
 };
 </script>
 
@@ -38,5 +41,11 @@ export default {
   bottom: 0;
   background-color: #ebecf0;
   width: 300px;
+
+  .loading-data {
+    height: 100%;
+    display: grid;
+    place-content: center;
+  }
 }
 </style>

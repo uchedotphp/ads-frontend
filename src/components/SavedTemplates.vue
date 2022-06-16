@@ -1,57 +1,52 @@
 <template>
-  <div v-if="!loading">
-    <template v-if="popups.length">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Label</th>
-            <th scope="col">Date</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="(popup, index) in popups" :key="popup">
-            <th scope="row">{{ index + 1 }}</th>
-            <td class="text-primary fw-bold">{{ popup.idem }}</td>
-            <td>{{ new Date(popup.created_at).toLocaleString() }}</td>
-            <td>
-              <i
-                @click="useTemplate(popup.data, popup.idem)"
-                class="bi bi-download text-primary"
-                role="button"
-              ></i>
-              <i
-                @click="deleteTemp(popup.id)"
-                class="bi bi-trash ms-3 text-danger"
-                role="button"
-              ></i>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <nav aria-label="Pagination" class="mt-3">
-        <ul class="pagination justify-content-end">
-          <li class="page-item disabled">
-            <a class="page-link">Previous</a>
-          </li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-          </li>
-        </ul>
-      </nav>
-    </template>
-    <h6 v-else class="text-center text-bold text-primary">
-      No save templates. <br />
-      Save a template to have it appear here.
-    </h6>
+  <div v-if="templateHistory.length">
+    <ol class="list-group list-group-numbered container px-0">
+      <li
+        v-for="(template, index) in templateHistory"
+        :key="index"
+        role="button"
+        @mouseenter="hoverIndex = index"
+        @mouseleave="hoverIndex = null"
+        @click="useTemplate(template)"
+        class="list-group-item d-flex list-group-item-action justify-content-between align-items-start row mx-0"
+        :class="{ active: templateInUse !== null && templateInUse === index }"
+      >
+        <div class="ms-2 me-auto col text-truncate">
+          <div class="fw-bold text-truncate">
+            {{ template.idem }}
+          </div>
+          {{ new Date(template.created_at).toLocaleString() }}
+        </div>
+        <span
+          v-if="templateInUse !== null && templateInUse === index"
+          class="badge bg-danger fw-light col-auto rounded-pill"
+          >in use</span
+        >
+        <span
+          v-else-if="index === hoverIndex"
+          class="badge bg-primary fw-light col-auto rounded-pill"
+          >Use template</span
+        >
+      </li>
+    </ol>
+    <nav aria-label="Pagination" class="mt-3">
+      <ul class="pagination justify-content-end">
+        <li class="page-item disabled">
+          <a class="page-link">Previous</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#">Next</a>
+        </li>
+      </ul>
+    </nav>
   </div>
-  <div v-else class="d-flex justify-content-center">
-    <LoadingSpinner />
-  </div>
+  <h6 v-else class="text-center text-bold text-primary">
+    No save templates. <br />
+    Save a template to have it appear here.
+  </h6>
 </template>
 
 <script>
@@ -65,19 +60,33 @@ export default {
   data() {
     return {
       loading: false,
+      hoverIndex: null,
     };
   },
   computed: {
-    ...mapState(["popups"]),
+    ...mapState(["templateHistory", "newPopup"]),
+    templateInUse() {
+      if (this.newPopup.idem !== null) {
+        return this.templateHistory.findIndex(
+          (t) => t.idem === this.newPopup.idem
+        );
+      }
+      return null;
+    },
   },
   methods: {
     ...mapMutations(["setStates"]),
     ...mapActions(["deleteTemplate"]),
-    useTemplate(template, idem) {
-      const theTemplate = this.popups.find((t) => t.idem === idem);
+    useTemplate(template) {
       this.setStates({
-        currentTemplateIdem: theTemplate.idem,
-        newPopup: template
+        newPopup: {
+          idem: template.idem,
+          id: template.id,
+          created_at: template.created_at,
+          updated_at: template.updated_at,
+          children: template.data.children,
+          backgroundColor: template.data.backgroundColor,
+        },
       });
     },
     async deleteTemp(id) {
