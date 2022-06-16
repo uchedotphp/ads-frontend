@@ -23,8 +23,8 @@ import BottomNav from "../components/navigations/BottomNav.vue";
 import TopHeader from "../components/TopHeader.vue";
 import EditorPreview from "../components/EditorPreview.vue";
 import PropertyOption from "../components/PropertyOption.vue";
-import { mapState } from "vuex";
-import LoadingSpinner from '../components/LoadingSpinner.vue';
+import LoadingSpinner from "../components/LoadingSpinner.vue";
+import { mapState, mapMutations, mapActions } from "vuex";
 
 export default {
   name: "MainLayout",
@@ -38,6 +38,19 @@ export default {
   },
   computed: {
     ...mapState(["pageLoading"]),
+  },
+  async mounted() {
+    this.setStates({
+      pageLoading: true,
+    });
+    await this.fetchSavedTemplates();
+    this.setStates({
+      pageLoading: false,
+    });
+  },
+  methods: {
+    ...mapMutations(["setStates"]),
+    ...mapActions(["fetchSavedTemplates"]),
   },
 };
 </script>

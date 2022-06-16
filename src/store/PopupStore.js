@@ -152,7 +152,7 @@ const store = createStore({
   },
 
   actions: {
-    async fetchPopups({ commit }) {
+    async fetchSavedTemplates({ commit }) {
       try {
         const { data } = await apiConnect.getPopups();
         commit("setStates", {
@@ -165,7 +165,7 @@ const store = createStore({
     async saveTemplate({ state, dispatch }) {
       try {
         await apiConnect.createPopup("firstTemp", state.newPopup);
-        await dispatch("fetchPopups");
+        await dispatch("fetchSavedTemplates");
       } catch (error) {
         console.log("error saving template", error);
       }
@@ -173,7 +173,7 @@ const store = createStore({
     async deleteTemplate({ dispatch }, id) {
       try {
         await apiConnect.deletePopup(id);
-        await dispatch("fetchPopups");
+        await dispatch("fetchSavedTemplates");
       } catch (error) {
         console.log("error deleting template", error);
       }
