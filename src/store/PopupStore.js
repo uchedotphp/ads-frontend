@@ -10,6 +10,7 @@ const store = createStore({
       activeElementId: 0,
       currentTemplateIdem: null,
       newPopup: {
+        idem: null,
         backgroundColor: "#e85e5b",
         children: [
           {
@@ -156,7 +157,7 @@ const store = createStore({
       try {
         const { data } = await apiConnect.getPopups();
         commit("setStates", {
-          popups: data.popups.data,
+          templateHistory: data.popups.data,
         });
       } catch (error) {
         console.log("error occured fetching popups", error);
