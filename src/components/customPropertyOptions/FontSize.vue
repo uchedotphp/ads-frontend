@@ -1,46 +1,50 @@
 <template>
-  <div class="btn-group" role="group">
-    <button
-      @click="subtract"
-      type="button"
-      class="btn bg-light text-dark btn-outline-dark"
-    >
-      <i class="bi bi-dash"></i>
-    </button>
-    <div class="btn-group dropdown-center d-none d-sm-flex">
+  <div class="d-flex align-items-center">
+    <p class="me-2 d-sm-none">Font size</p>
+
+    <div class="btn-group" role="group">
       <button
+        @click="subtract"
         type="button"
         class="btn bg-light text-dark btn-outline-dark"
-        id="dropdownCenterBtn"
-        data-bs-toggle="dropdown"
-        aria-expanded="false"
       >
-        {{ selectedFont }}
+        <i class="bi bi-dash"></i>
       </button>
-      <ul
-        style="min-width: 20px"
-        class="dropdown-menu dropdown-menu-center"
-        aria-labelledby="dropdownCenterBtn"
+      <div class="btn-group dropdown-center d-none d-sm-flex">
+        <button
+          type="button"
+          class="btn bg-light text-dark btn-outline-dark"
+          id="dropdownCenterBtn"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          {{ selectedFont }}
+        </button>
+        <ul
+          style="min-width: 20px"
+          class="dropdown-menu dropdown-menu-center"
+          aria-labelledby="dropdownCenterBtn"
+        >
+          <li v-for="fontSize in fontSizes">
+            <a
+              @click="selectedFont = fontSize"
+              class="dropdown-item"
+              :class="{ active: fontSize === selectedFont }"
+              href="#"
+            >
+              {{ fontSize }}
+            </a>
+          </li>
+        </ul>
+      </div>
+      <button
+        @click="add"
+        type="button"
+        class="btn bg-light text-dark btn-outline-dark"
       >
-        <li v-for="fontSize in fontSizes">
-          <a
-            @click="selectedFont = fontSize"
-            class="dropdown-item"
-            :class="{ active: fontSize === selectedFont }"
-            href="#"
-          >
-            {{ fontSize }}
-          </a>
-        </li>
-      </ul>
+        <i class="bi bi-plus"></i>
+      </button>
     </div>
-    <button
-      @click="add"
-      type="button"
-      class="btn bg-light text-dark btn-outline-dark"
-    >
-      <i class="bi bi-plus"></i>
-    </button>
   </div>
 </template>
 
