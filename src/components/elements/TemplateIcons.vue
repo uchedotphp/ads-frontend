@@ -9,7 +9,11 @@
       xmlns="http://www.w3.org/2000/svg"
       fill="currentColor"
       :class="[
-        n === 2 ? 'align-self-start' : 'align-self-center',
+        n === 2 && iconComesFirst
+          ? 'align-self-start'
+          : n === 2 && iconComesLast
+          ? 'align-self-end'
+          : 'align-self-center',
         'bi bi-star-fill',
       ]"
       viewBox="0 0 16 16"
@@ -22,12 +26,34 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "TemplateIcons",
+  props: {
+    id: {
+      type: Number,
+      required: true,
+    },
+  },
   computed: {
+    ...mapState(["newPopup"]),
+    iconComesFirst() {
+      const index = this.newPopup.children.findIndex((i) => i.id === this.id);
+      return index === 0;
+    },
+    iconComesLast() {
+      const index = this.newPopup.children.findIndex((i) => i.id === this.id);
+      return index === this.newPopup.children.length - 1;
+    },
+    iconComesFirstOrLastOnCollection() {
+      return this.iconComesFirst || this.iconComesLast;
+    },
     height() {
-      return "80px";
-      //   return 'auto'
+      if (this.iconComesFirstOrLastOnCollection) {
+        return "80px";
+      }
+      return "auto";
     },
   },
 };
