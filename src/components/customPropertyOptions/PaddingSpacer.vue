@@ -9,7 +9,7 @@
       >
         <i class="bi bi-dash"></i>
       </button>
-      <div class="btn-group dropdown-center">
+      <div class="btn-group dropdown-center d-none d-sm-flex">
         <button
           type="button"
           class="btn bg-light text-dark btn-outline-dark"

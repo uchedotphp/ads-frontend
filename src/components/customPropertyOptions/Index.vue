@@ -2,9 +2,21 @@
   <div class="props d-flex">
     <PaletteBg />
 
-    <FontSize v-if="elementType === 'text' || elementType === 'input' || elementType === 'button'" />
+    <FontSize
+      v-if="
+        elementType === 'text' ||
+        elementType === 'input' ||
+        elementType === 'button'
+      "
+    />
 
-    <FontColor v-if="elementType === 'text' || elementType === 'icon' || elementType === 'button'" />
+    <FontColor
+      v-if="
+        elementType === 'text' ||
+        elementType === 'icon' ||
+        elementType === 'button'
+      "
+    />
 
     <PaddingSpacer paddingType="bottom" />
 
@@ -45,6 +57,10 @@ export default {
   padding: 8px 10px;
   width: 100%;
   border-bottom: 1px solid #ebecf0;
+
+  @media (max-width: 767.98px) {
+    overflow-x: auto;
+  }
 
   > * {
     margin-right: 30px;
