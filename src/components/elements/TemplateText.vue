@@ -2,7 +2,7 @@
   <p
   class="template-content-editable"
     contenteditable="true"
-    :style="`color: ${color}; font-size: ${fontSize}; font-weight: ${fontWeight}`"
+    :style="`color: ${color}; font-size: ${fontSize}px; font-weight: ${fontWeight}`"
   >
     {{ content }}
   </p>
@@ -25,7 +25,7 @@ export default {
     },
     fontSize: {
       type: String,
-      default: "30px",
+      default: "30",
     },
     fontWeight: {
       type: Number,
@@ -35,10 +35,6 @@ export default {
       type: String,
       default: "#ffffff",
     }
-    // size: {
-    //   type: String,
-    //   default: "md",
-    // },
   },
   methods: {
     // ...mapMutations(["updateActiveElementProperty"]),

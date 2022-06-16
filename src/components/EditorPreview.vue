@@ -2,7 +2,7 @@
   <div class="canvas card" :style="`background-color: ${bgColor}`">
     <div class="inner-content">
       <div class="max-w">
-        <!-- when palette is empty -->
+        <!-- when canvas is empty -->
         <TemplateText
           v-if="currentTemplate.children.length === 0"
           content="Click on an element to add them here."
@@ -16,7 +16,7 @@
             :id="element.id"
             :targetElementId="element.id"
           >
-            <TemplateIcons :id="element.id" />
+            <TemplateIcons :id="element.id" :color="element.color" />
           </ActiveElement>
 
           <ActiveElement
@@ -24,7 +24,12 @@
             :id="element.id"
             :targetElementId="element.id"
           >
-            <TemplateText :content="element.text" :id="element.id" />
+            <TemplateText
+              :content="element.text"
+              :id="element.id"
+              :fontSize="element.fontSize"
+              :color="element.color"
+            />
           </ActiveElement>
 
           <ActiveElement
@@ -32,7 +37,11 @@
             :id="element.id"
             :targetElementId="element.id"
           >
-            <TemplateInput :id="element.id" />
+            <TemplateInput
+              :id="element.id"
+              :fontSize="element.fontSize"
+              :placeholder="element.placeholder"
+            />
           </ActiveElement>
 
           <ActiveElement

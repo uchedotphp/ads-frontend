@@ -15,36 +15,33 @@ const defaultTemplate = {
     {
       id: 1,
       type: "icon",
-      // size: "lg",
-      // text: "All text and elements in this popup should be editable and draggable",
-      // color: "#ffffff",
+      color: "#cb3635",
     },
     {
       id: 2,
       type: "text",
-      size: "lg",
+      fontSize: "30",
       text: "All text and elements in this popup should be editable and draggable",
       color: "#ffffff",
     },
     {
       id: 3,
       type: "input",
-      placeholder: "Email",
-      color: "#ffffff",
+      fontSize: "12",
+      placeholder: "E-mail",
     },
     {
       id: 4,
       type: "button",
       backgroundColor: "#000000",
       label: "SIGNUP NOW",
-      size: "md",
       truncate: false,
       color: "#ffffff",
     },
     {
       id: 5,
       type: "text",
-      size: "sm",
+      fontSize: "15",
       text: "No credit card required. No Surprise",
       color: "#ffffff",
     },
@@ -52,7 +49,7 @@ const defaultTemplate = {
 };
 
 export default {
-  defaultTemplate, //default template
+  defaultTemplate,
 
   async getTemplates() {
     return http.get(`/popups`);

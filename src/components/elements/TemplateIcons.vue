@@ -8,6 +8,7 @@
       :key="n"
       xmlns="http://www.w3.org/2000/svg"
       fill="currentColor"
+      :style="`color: ${color}`"
       :class="[
         n === 2 && iconComesFirst
           ? 'align-self-start'
@@ -34,6 +35,10 @@ export default {
     id: {
       type: Number,
       required: true,
+    },
+    color: {
+      type: String,
+      default: "#cb3635",
     },
   },
   computed: {
@@ -64,7 +69,6 @@ export default {
   .bi {
     width: 30px;
     height: 30px;
-    color: #cb3635;
     &:nth-child(2) {
       width: 46px;
       height: 46px;
