@@ -29,10 +29,10 @@ export default {
   },
   async mounted() {
     // fetch all popups
-    await this.fetchPopups();
+    await this.fetchSavedTemplates();
   },
   methods: {
-    ...mapActions(["fetchPopups"]),
+    ...mapActions(["fetchSavedTemplates"]),
   },
 };
 </script>
