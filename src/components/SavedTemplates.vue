@@ -2,7 +2,7 @@
   <div v-if="templateHistory.length">
     <ol class="list-group list-group-numbered container px-0">
       <li
-        v-for="(template, index) in templateHistory"
+        v-for="(template, index) in templateHistory.slice(0,10)"
         :key="index"
         role="button"
         @mouseenter="hoverIndex = index"
