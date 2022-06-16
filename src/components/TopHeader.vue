@@ -12,11 +12,11 @@
       <div
         class="col d-flex align-items-center justify-content-start justify-content-sm-center"
       >
-        <i
-          class="bi bi-arrow-clockwise text-danger me-3"
-          style="font-size: 2rem"
-        ></i>
+        <button :disabled="pageLoading" class="btn text-danger me-3">
+          <i class="bi bi-arrow-clockwise" style="font-size: 2rem"></i>
+        </button>
         <button
+          :disabled="pageLoading"
           @click="save"
           class="btn btn-outline-primary save-template me-auto me-sm-0 text-truncate"
         >
@@ -78,7 +78,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["currentTemplateIdem"]),
+    ...mapState(["currentTemplateIdem", "pageLoading"]),
   },
   methods: {
     clicking() {
@@ -109,7 +109,7 @@ export default {
   background-color: white;
   padding: 10px 30px;
   // box-shadow: 0px 15px 23px rgba(208, 210, 218, 0.6);
-  border-bottom: 1px solid #EBECF0;
+  border-bottom: 1px solid #ebecf0;
 
   .logo-area {
     .title {
