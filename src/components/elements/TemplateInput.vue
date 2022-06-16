@@ -1,7 +1,10 @@
 <template>
-  <!-- <div class="mx-auto"> -->
-    <input type="text" class="base-input" :placeholder="placeholder" />
-  <!-- </div> -->
+  <input
+    type="text"
+    class="base-input"
+    :placeholder="placeholder"
+    :style="`font-size: ${fontSize}px`"
+  />
 </template>
 
 <script>
@@ -10,11 +13,15 @@ export default {
   props: {
     id: {
       type: Number,
-      required: true
+      required: true,
     },
     placeholder: {
       type: String,
       default: "E-mail",
+    },
+    fontSize: {
+      type: String,
+      default: "20",
     },
   },
 };
@@ -25,12 +32,11 @@ export default {
   width: 100%;
   border-radius: 16px;
   padding: 10px 15px;
-  font-size: 20px;
   outline: none;
   border: none;
 }
 
 ::-webkit-input-placeholder {
-    color: #a4a6ad;
+  color: #a4a6ad;
 }
 </style>

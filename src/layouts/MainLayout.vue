@@ -4,7 +4,7 @@
     <div class="col">
       <div class="row d-flex flex-column" style="height: 100%">
         <TopHeader class="col-auto" />
-        <PropertyOption class="col-auto" v-if="!pageLoading" />
+        <PropertyOptions class="col-auto" v-if="!pageLoading" />
         <div class="col preview">
           <main class="content">
             <EditorPreview v-if="!pageLoading" />
@@ -22,7 +22,7 @@ import LeftSidebarMenu from "../components/navigations/LeftSidebarMenu.vue";
 import BottomNav from "../components/navigations/BottomNav.vue";
 import TopHeader from "../components/TopHeader.vue";
 import EditorPreview from "../components/EditorPreview.vue";
-import PropertyOption from "../components/PropertyOption.vue";
+import PropertyOptions from "../components/customPropertyOptions/Index.vue";
 import LoadingSpinner from "../components/LoadingSpinner.vue";
 import { mapState, mapMutations, mapActions } from "vuex";
 
@@ -33,7 +33,7 @@ export default {
     LeftSidebarMenu,
     BottomNav,
     EditorPreview,
-    PropertyOption,
+    PropertyOptions,
     LoadingSpinner,
   },
   computed: {
