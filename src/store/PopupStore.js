@@ -8,49 +8,7 @@ const store = createStore({
       pageLoading: false,
       templateHistory: [],
       activeElementId: 0,
-      currentTemplateIdem: null,
-      newPopup: {
-        idem: null,
-        backgroundColor: "#e85e5b",
-        children: [
-          {
-            id: 1,
-            type: "icon",
-            // size: "lg",
-            // text: "All text and elements in this popup should be editable and draggable",
-            // color: "#ffffff",
-          },
-          {
-            id: 2,
-            type: "text",
-            size: "lg",
-            text: "All text and elements in this popup should be editable and draggable",
-            color: "#ffffff",
-          },
-          {
-            id: 3,
-            type: "input",
-            placeholder: "Email",
-            color: "#ffffff",
-          },
-          {
-            id: 4,
-            type: "button",
-            backgroundColor: "#000000",
-            label: "SIGNUP NOW",
-            size: "md",
-            truncate: false,
-            color: "#ffffff",
-          },
-          {
-            id: 5,
-            type: "text",
-            size: "sm",
-            text: "No credit card required. No Surprise",
-            color: "#ffffff",
-          },
-        ],
-      },
+      newPopup: apiConnect.defaultTemplate,
     };
   },
 
@@ -58,45 +16,6 @@ const store = createStore({
     setStates(state, data) {
       Object.keys(data).map((key) => {
         state[key] = data[key];
-      });
-    },
-    newStarDivider(state) {
-      state.newPopup.children.push({
-        id: state.newPopup.children.length + 1,
-        type: "star",
-        color: "#a83c3b",
-      });
-    },
-
-    newButton(state) {
-      state.newPopup.children.push({
-        id: state.newPopup.children.length + 1,
-        type: "button",
-        backgroundColor: "#dc3545",
-        color: "#fff",
-        label: "Button",
-        truncate: false,
-        size: "md",
-      });
-    },
-
-    newText(state) {
-      state.newPopup.children.push({
-        id: state.newPopup.children.length + 1,
-        type: "text",
-        color: "#ffffff",
-        text: "Type your text here",
-        size: "md",
-      });
-    },
-
-    newInputField(state) {
-      state.newPopup.children.push({
-        id: state.newPopup.children.length + 1,
-        type: "input",
-        backgroundColor: "#fff",
-        color: "#303040",
-        placeholder: "Type your value",
       });
     },
 
@@ -126,7 +45,7 @@ const store = createStore({
 
     updateElementProperty(state, data) {
       const index = state.newPopup.children.findIndex((e) => e.id === data.id);
-      const element = this.state.newPopup.children[index];
+      const element = state.newPopup.children[index];
 
       state.newPopup.children.splice(index, 1, {
         ...element,
@@ -150,30 +69,60 @@ const store = createStore({
       const element = state.newPopup.children.splice(index, 1)[0];
       state.newPopup.children.splice(targetElementIndex, 0, element);
     },
+
+    resetCanvas(state) {
+      state.newPopup = apiConnect.defaultTemplate;
+    }
   },
 
   actions: {
     async fetchSavedTemplates({ commit }) {
       try {
-        const { data } = await apiConnect.getPopups();
+        const { data } = await apiConnect.getTemplates();
         commit("setStates", {
-          templateHistory: data.popups.data,
+          templateHistory: data.popups.data.reverse(),
         });
       } catch (error) {
         console.log("error occured fetching popups", error);
       }
     },
-    async saveTemplate({ state, dispatch }) {
+    async saveTemplate({ state, commit, dispatch }) {
       try {
-        await apiConnect.createPopup("firstTemp", state.newPopup);
+        const { data } = await apiConnect.createTemplate(
+          "firstTemp",
+          state.newPopup
+        );
+        const savedTemplate = data.popup;
+        commit("setStates", {
+          newPopup: {
+            idem: savedTemplate.idem,
+            id: savedTemplate.id,
+            created_at: savedTemplate.created_at,
+            updated_at: savedTemplate.updated_at,
+            children: savedTemplate.data.children,
+            backgroundColor: savedTemplate.data.backgroundColor,
+          },
+        });
         await dispatch("fetchSavedTemplates");
       } catch (error) {
         console.log("error saving template", error);
       }
     },
+    async updateTemplate({ state }, id) {
+      try {
+        const newPopup = {
+          children: state.newPopup.children,
+          backgroundColor: state.newPopup.backgroundColor,
+        };
+        const res = await apiConnect.updateTemplate(id, newPopup);
+        console.log("response updating: ", res);
+      } catch (error) {
+        console.log("error updating template", error);
+      }
+    },
     async deleteTemplate({ dispatch }, id) {
       try {
-        await apiConnect.deletePopup(id);
+        await apiConnect.deleteTemplate(id);
         await dispatch("fetchSavedTemplates");
       } catch (error) {
         console.log("error deleting template", error);

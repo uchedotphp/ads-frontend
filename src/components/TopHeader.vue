@@ -12,7 +12,7 @@
       <div
         class="col d-flex align-items-center justify-content-start justify-content-sm-center"
       >
-        <button :disabled="pageLoading" class="btn text-danger me-3">
+        <button @click="reset" :disabled="pageLoading" class="btn text-danger me-3">
           <i class="bi bi-arrow-clockwise" style="font-size: 2rem"></i>
         </button>
         <button
@@ -21,18 +21,26 @@
           class="btn btn-outline-primary save-template me-auto me-sm-0 text-truncate"
         >
           <template v-if="!loading">
-            <i style="font-size: 1rem" class="bi bi-cloud-slash"></i>
-            <span class="fw-bold"> Unsaved changes </span>
+            <span class="fw-bold">
+              {{ idemStatus !== null ? "Update template" : "Save template" }}
+            </span>
           </template>
-          <LoadingSpinner size="sm" v-else> Saving template... </LoadingSpinner>
+          <LoadingSpinner size="sm" v-else>
+            {{
+              idemStatus !== null
+                ? "Updating template..."
+                : "Saving template..."
+            }}
+          </LoadingSpinner>
         </button>
+
         <button
-          :disabled="pageLoading"
-          v-if="!loading"
-          @click="previewTemplate"
-          class="preview-link btn d-none"
+          disabled
+          type="button"
+          class="col-auto btn btn-outline-success ms-3"
         >
-          Preview
+          <i class="bi bi-back me-1"></i>
+          <span class="d-none d-sm-inline"> Copy script </span>
         </button>
         <button
           :disabled="pageLoading || loading"
@@ -46,17 +54,13 @@
         </button>
       </div>
       <div class="d-none d-sm-block col-auto">
-        <!-- <a
-        href="https://github.com/uchedotphp/poptin-frontend"
-        target="_blank"
-        type="button"
-        class="btn btn-outline-primary"
-        >Github Repo</a
-      > -->
-        <button disabled type="button" class="col-auto btn btn-outline-success">
-          <i class="bi bi-back me-1"></i>
-          Copy script
-        </button>
+        <a
+          href="https://github.com/uchedotphp/poptin-frontend"
+          target="_blank"
+          type="button"
+          class="btn btn-outline-primary"
+          >Github Repo</a
+        >
       </div>
     </div>
 
@@ -72,17 +76,17 @@
 
 <script>
 import LoadingSpinner from "./LoadingSpinner.vue";
-import ModalContent from './ModalContent.vue';
-import SavedTemplates from './SavedTemplates.vue';
+import ModalContent from "./ModalContent.vue";
+import SavedTemplates from "./SavedTemplates.vue";
 import { Modal } from "bootstrap/dist/js/bootstrap.bundle";
-import { mapState, mapActions } from "vuex";
+import { mapState, mapMutations, mapActions } from "vuex";
 
 export default {
   name: "TopHeader",
   components: {
     LoadingSpinner,
     ModalContent,
-    SavedTemplates
+    SavedTemplates,
   },
   data() {
     return {
@@ -90,30 +94,32 @@ export default {
     };
   },
   computed: {
-    ...mapState(["currentTemplateIdem", "pageLoading"]),
+    ...mapState(["newPopup", "pageLoading"]),
+    ...mapState({
+      idemStatus: (state) => state.newPopup.idem,
+    }),
   },
   methods: {
-    clicking() {
-      console.log("clicking");
-    },
-    ...mapActions(["saveTemplate"]),
+    ...mapMutations(['resetCanvas']),
+    ...mapActions(["saveTemplate", "updateTemplate"]),
     async save() {
       try {
         this.loading = true;
-        await this.saveTemplate();
+        if (this.newPopup.idem !== null) {
+          await this.updateTemplate(this.newPopup.idem);
+        } else {
+          await this.saveTemplate();
+        }
       } catch (error) {
         console.log(error);
       }
       this.loading = false;
     },
-    previewTemplate() {
-      // this.$router.push({
-      //   name: "Demo",
-      //   params: { idem: this.currentTemplateIdem },
-      // });
-    },
     openTemplateHistory() {
       new Modal(document.getElementById("savedTemplates")).show();
+    },
+    reset() {
+      this.resetCanvas()
     }
   },
 };
@@ -123,8 +129,11 @@ export default {
 .top-header {
   background-color: white;
   padding: 10px 30px;
-  // box-shadow: 0px 15px 23px rgba(208, 210, 218, 0.6);
   border-bottom: 1px solid #ebecf0;
+
+  @media (max-width: 767.98px) {
+    padding-inline: 10px;
+  }
 
   .logo-area {
     .title {
@@ -132,7 +141,6 @@ export default {
     }
   }
   .save-template {
-    // background: linear-gradient(0deg, #6a11cb, #2575fc) !important;
     width: fit-content;
     padding-inline: 20px;
   }
