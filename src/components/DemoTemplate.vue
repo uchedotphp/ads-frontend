@@ -31,13 +31,13 @@
             </p>
             <div class="max-w">
               <template v-for="element in newPopup.children">
-                <TemplateButton
+                <!-- <TemplateButton
                   v-if="element.type === 'button'"
                   :bg-color="element.backgroundColor"
                   :text-color="element.color"
                   :size="element.size"
                   >{{ element.label }}</TemplateButton
-                >
+                > -->
                 <!-- <TemplateInput
                   v-else-if="element.type === 'input'"
                   :placeholder="element.placeholder"
@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import TemplateButton from "./TemplateButton.vue";
+// import TemplateButton from "./TemplateButton.vue";
 // import TemplateInput from "./TemplateInput.vue";
 // import TemplateText from "./TemplateText.vue";
 
@@ -74,7 +74,7 @@ export default {
   components: {
     // TemplateText,
     // TemplateInput,
-    TemplateButton,
+    // TemplateButton,
   },
   methods: {
     attach() {
