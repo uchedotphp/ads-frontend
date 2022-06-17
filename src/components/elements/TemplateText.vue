@@ -1,16 +1,16 @@
 <template>
   <p
-  class="template-content-editable"
-  @input="updateText"
+    class="template-content-editable"
+    @input="updateText"
     contenteditable="true"
-    :style="`color: ${color}; font-size: ${fontSize}px; font-weight: ${fontWeight}`"
+    :style="`color: ${color}; font-size: ${fontSize}px; font-weight: ${fontWeight}; padding-bottom: ${paddingBottom}em`"
   >
     {{ content }}
   </p>
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations } from "vuex";
 
 export default {
   name: "TemplateText",
@@ -18,7 +18,7 @@ export default {
   props: {
     id: {
       type: Number,
-      required: true
+      required: true,
     },
     content: {
       type: String,
@@ -35,7 +35,11 @@ export default {
     color: {
       type: String,
       default: "#ffffff",
-    }
+    },
+    paddingBottom: {
+      type: Number,
+      default: 0,
+    },
   },
   computed: {
     ...mapState(["newPopup", "activeElementId"]),
@@ -47,18 +51,17 @@ export default {
     }),
   },
   methods: {
-     ...mapMutations(["updateActiveElementProperty"]),
-      updateText(e) {
-        const data = {
-          ...this.newPopup.children[this.activeElementIndex],
+    ...mapMutations(["updateActiveElementProperty"]),
+    updateText(e) {
+      const data = {
+        ...this.newPopup.children[this.activeElementIndex],
         text: e.target.innerText,
-        }
-        console.log('see: ', data);
+      };
       this.updateActiveElementProperty(data);
     },
     resetLabel() {
       if (!this.content.length) {
-        this.updateActiveElementProperty({key: "text", value: 'Type a text'});
+        this.updateActiveElementProperty({ key: "text", value: "Type a text" });
       }
     },
   },

@@ -3,7 +3,7 @@
     type="text"
     class="base-input"
     :placeholder="placeholder"
-    :style="`font-size: ${fontSize}px`"
+    :style="`font-size: ${fontSize}px; margin-bottom: ${paddingBottom}em`"
   />
 </template>
 
@@ -20,8 +20,12 @@ export default {
       default: "E-mail",
     },
     fontSize: {
-      type: String,
-      default: "20",
+      type: Number,
+      default: 12,
+    },
+    paddingBottom: {
+      type: Number,
+      default: 0,
     },
   },
 };

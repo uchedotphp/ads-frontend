@@ -18,7 +18,16 @@
       "
     />
 
-    <PaddingSpacer v-if="elementType !== null" paddingType="bottom" />
+    <PaddingSpacer
+      v-if="elementType !== null"
+      :paddingType="
+        elementType === 'button' ||
+        elementType === 'input' ||
+        elementType === 'icon'
+          ? 'Margin'
+          : 'Padding'
+      "
+    />
 
     <DeleteElement v-if="elementType !== null" />
   </div>

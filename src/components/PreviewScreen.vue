@@ -21,12 +21,12 @@
                 :slotId="element.id"
                 @close="removeTemplateElement(element.id)"
               >
-                <TemplateButton
+                <!-- <TemplateButton
                   :bg-color="element.backgroundColor"
                   :text-color="element.color"
                   :size="element.size"
                   >{{ element.label }}</TemplateButton
-                >
+                > -->
               </ActiveElement>
               <ActiveElement
                 v-else-if="element.type === 'input'"
@@ -34,7 +34,7 @@
                 :slotId="element.id"
                 @close="removeTemplateElement(element.id)"
               >
-                <TemplateInput :placeholder="element.placeholder" />
+                <!-- <TemplateInput :placeholder="element.placeholder" /> -->
               </ActiveElement>
               <ActiveElement
                 v-else-if="element.type === 'text'"
@@ -42,11 +42,11 @@
                 :slotId="element.id"
                 @close="removeTemplateElement(element.id)"
               >
-                <TemplateText
+                <!-- <TemplateText
                   :content="element.text"
                   :size="element.size"
                   :color="element.color"
-                />
+                /> -->
               </ActiveElement>
             </template>
           </div>
@@ -60,9 +60,9 @@
 
 <script>
 import { mapMutations, mapState } from "vuex";
-import TemplateInput from "./TemplateInput.vue";
-import TemplateText from "./TemplateText.vue";
-import TemplateButton from "./TemplateButton.vue";
+// import TemplateInput from "./TemplateInput.vue";
+// import TemplateText from "./TemplateText.vue";
+// import TemplateButton from "./TemplateButton.vue";
 import ActiveElement from "./ActiveElement.vue";
 
 export default {
@@ -74,9 +74,9 @@ export default {
     };
   },
   components: {
-    TemplateText,
-    TemplateInput,
-    TemplateButton,
+    // TemplateText,
+    // TemplateInput,
+    // TemplateButton,
     ActiveElement
   },
   computed: {

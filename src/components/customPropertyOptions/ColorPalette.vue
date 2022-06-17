@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapGetters } from "vuex";
+import { mapState, mapMutations } from "vuex";
 
 export default {
   name: "ColorPalette",
@@ -37,9 +37,6 @@ export default {
   },
   computed: {
     ...mapState(["newPopup"]),
-    ...mapGetters({
-      getActiveTemplateElement: "getActiveTemplateElement",
-    }),
   },
   methods: {
     ...mapMutations(["setStates"]),
