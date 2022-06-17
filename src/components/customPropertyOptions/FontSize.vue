@@ -49,6 +49,8 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from "vuex";
+
 export default {
   name: "FontSize",
   data() {
@@ -57,12 +59,35 @@ export default {
       fontSizes: [14, 16, 18, 24, 26, 28, 30, 32, 36, 40, 42, 48, 50, 54],
     };
   },
+  computed: {
+    ...mapState(["newPopup", "activeElementId"]),
+    ...mapState({
+      activeElementIndex: (state) =>
+        state.newPopup.children.findIndex(
+          (c) => c.id === state.activeElementId
+        ),
+    }),
+  },
+  watch: {
+    selectedFont(newValue) {
+        console.log('new value: ', newValue);
+      this.setFontSize(newValue);
+    },
+  },
   methods: {
+    ...mapMutations(["updateActiveElementProperty"]),
     add() {
       this.selectedFont++;
     },
     subtract() {
       this.selectedFont--;
+    },
+    setFontSize(fontSize) {
+      const data = {
+        ...this.newPopup.children[this.activeElementIndex],
+        fontSize,
+      };
+      this.updateActiveElementProperty(data);
     },
   },
 };

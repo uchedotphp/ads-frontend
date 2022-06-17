@@ -18,7 +18,7 @@
       "
     />
 
-    <PaddingSpacer paddingType="bottom" />
+    <PaddingSpacer v-if="elementType !== null" paddingType="bottom" />
 
     <DeleteElement v-if="elementType !== null" />
   </div>

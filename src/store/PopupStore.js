@@ -8,7 +8,7 @@ const store = createStore({
       pageLoading: false,
       templateHistory: [],
       activeElementId: 0,
-      newPopup: apiConnect.defaultTemplate,
+      newPopup: JSON.parse(JSON.stringify(apiConnect.defaultTemplate)),
     };
   },
 
@@ -23,21 +23,17 @@ const store = createStore({
       state.activeElementId = id;
     },
 
-    removeTemplateElement(state, id) {
-      state.newPopup.children = state.newPopup.children.filter((el) => {
-        return el.id !== id;
-      });
+    // removeTemplateElement(state, id) {
+    //   state.newPopup.children = state.newPopup.children.filter((el) => {
+    //     return el.id !== id;
+    //   });
 
-      // this.commit("reIndex");
+    //   // this.commit("reIndex");
 
-      if (state.activeElementId === id) {
-        this.commit("changeActiveElementId", 0);
-      }
-    },
-
-    updateBodyBgColor(state, color) {
-      state.newPopup.backgroundColor = color;
-    },
+    //   if (state.activeElementId === id) {
+    //     this.commit("changeActiveElementId", 0);
+    //   }
+    // },
 
     updateActiveElementProperty(state, d) {
       this.commit("updateElementProperty", { ...d, id: state.activeElementId });
@@ -45,12 +41,7 @@ const store = createStore({
 
     updateElementProperty(state, data) {
       const index = state.newPopup.children.findIndex((e) => e.id === data.id);
-      const element = state.newPopup.children[index];
-
-      state.newPopup.children.splice(index, 1, {
-        ...element,
-        [data["key"]]: data["value"],
-      });
+      state.newPopup.children.splice(index, 1, data);
     },
 
     // reIndex(state) {
@@ -89,7 +80,7 @@ const store = createStore({
     async saveTemplate({ state, commit, dispatch }) {
       try {
         const { data } = await apiConnect.createTemplate(
-          "firstTemp",
+          "poptinTemplate",
           state.newPopup
         );
         const savedTemplate = data.popup;

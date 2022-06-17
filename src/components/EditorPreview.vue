@@ -27,7 +27,7 @@
             <TemplateText
               :content="element.text"
               :id="element.id"
-              :fontSize="element.fontSize"
+              :fontSize="parseInt(element.fontSize)"
               :color="element.color"
             />
           </ActiveElement>
