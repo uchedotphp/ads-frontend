@@ -2,7 +2,7 @@
   <p
     class="template-content-editable"
     @input="updateText"
-    contenteditable="true"
+    :contenteditable="$route.name === 'Editor'"
     :style="`color: ${color}; font-size: ${fontSize}px; font-weight: ${fontWeight}; padding-bottom: ${paddingBottom}em`"
   >
     {{ content }}

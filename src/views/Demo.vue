@@ -1,5 +1,5 @@
 <template>
-  <DemoTemplate v-if="!pageLoading" :newPopup="template" />
+  <DemoTemplate v-if="!pageLoading" :currentTemplate="template" />
   <div v-else class="loading">
     <LoadingSpinner />
   </div>

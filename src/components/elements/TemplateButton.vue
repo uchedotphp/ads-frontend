@@ -1,11 +1,12 @@
 <template>
   <button
-  @input="updateText"
-  contenteditable="true"
-      class="base-btn btn"
-      :style="`color: ${textColor}; background-color: ${bgColor}; margin-bottom: ${paddingBottom}em; font-size: ${fontSize}px`"
-      type="button">
-      {{ text }}
+    @input="updateText"
+    :contenteditable="$route.name === 'Editor'"
+    class="base-btn btn"
+    :style="`color: ${textColor}; background-color: ${bgColor}; margin-bottom: ${paddingBottom}em; font-size: ${fontSize}px`"
+    type="button"
+  >
+    {{ text }}
   </button>
 </template>
 
@@ -17,7 +18,7 @@ export default {
   props: {
     id: {
       type: Number,
-      required: true
+      required: true,
     },
   },
   props: {
@@ -27,7 +28,7 @@ export default {
     },
     text: {
       type: String,
-      default: 'SIGNUP NOW'
+      default: "SIGNUP NOW",
     },
     truncateText: {
       type: Boolean,
@@ -35,7 +36,7 @@ export default {
     },
     buttonLabel: {
       type: String,
-      default: 'SIGNUP NOW'
+      default: "SIGNUP NOW",
     },
     textColor: {
       type: String,
