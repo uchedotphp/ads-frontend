@@ -1,7 +1,7 @@
 <template>
   <div
     class="d-flex icons-box justify-content-center"
-    :style="{ height: height }"
+    :style="`height: ${height}; margin-bottom: ${paddingBottom}em`"
   >
     <svg
       v-for="n in 3"
@@ -39,6 +39,10 @@ export default {
     color: {
       type: String,
       default: "#cb3635",
+    },
+    paddingBottom: {
+      type: Number,
+      default: 0,
     },
   },
   computed: {

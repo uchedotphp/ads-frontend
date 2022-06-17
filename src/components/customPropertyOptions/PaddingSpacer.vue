@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex align-items-center">
-    <p class="me-2">Padding {{ paddingType }}</p>
+    <p class="me-2">{{ paddingType }} bottom</p>
     <div class="btn-group" role="group">
       <button
         @click="subtract"
@@ -17,21 +17,21 @@
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          {{ selectedPadding }}
+          {{ spacerBottom }}
         </button>
         <ul
           style="min-width: 20px"
           class="dropdown-menu dropdown-menu-center"
           aria-labelledby="dropdownCenterBtn"
         >
-          <li v-for="padding in paddings">
+          <li v-for="spacer in paddings">
             <a
-              @click="selectedPadding = padding"
+              @click="spacerBottom = spacer"
               class="dropdown-item"
-              :class="{ active: padding === selectedPadding }"
+              :class="{ active: getActiveTemplateElement.paddingBottom === spacer }"
               href="#"
             >
-              {{ padding }}
+              {{ spacer }}
             </a>
           </li>
         </ul>
@@ -48,26 +48,53 @@
 </template>
 
 <script>
+import { mapState, mapMutations, mapGetters } from "vuex";
+
 export default {
   name: "PaddingSpacer",
   props: {
     paddingType: {
       type: String,
-      required: true,
+      default: 'Padding'
     },
   },
   data() {
     return {
-      selectedPadding: 0,
-      paddings: [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 26, 32, 40],
+      spacerBottom: 0,
+      paddings: [0, 0.5, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     };
   },
+  computed: {
+    ...mapState(["newPopup", "activeElementId"]),
+    ...mapState({
+      activeElementIndex: (state) =>
+        state.newPopup.children.findIndex(
+          (c) => c.id === state.activeElementId
+        ),
+    }),
+    ...mapGetters({
+      getActiveTemplateElement: "getActiveTemplateElement",
+    }),
+  },
+  watch: {
+    spacerBottom(newValue) {
+      this.setSpacerBottom(newValue);
+    },
+  },
   methods: {
+    ...mapMutations(["updateActiveElementProperty"]),
     add() {
-      this.selectedPadding++;
+      this.spacerBottom++;
     },
     subtract() {
-      this.selectedPadding--;
+      this.spacerBottom--;
+    },
+    setSpacerBottom(spacer) {
+      const data = {
+        ...this.newPopup.children[this.activeElementIndex],
+        paddingBottom: spacer,
+      };
+      this.updateActiveElementProperty(data);
     },
   },
 };

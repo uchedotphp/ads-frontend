@@ -1,14 +1,16 @@
 <template>
   <button
+  @input="updateText"
+  contenteditable="true"
       class="base-btn btn"
-      :style="`color: ${textColor}; background-color: ${bgColor}; font-size: ${fontSize}`"
+      :style="`color: ${textColor}; background-color: ${bgColor}; margin-bottom: ${paddingBottom}em; font-size: ${fontSize}px`"
       type="button">
-    <slot></slot>
+      {{ text }}
   </button>
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import { mapState, mapMutations } from "vuex";
 
 export default {
   name: "TemplateButton",
@@ -18,27 +20,15 @@ export default {
       required: true
     },
   },
-  computed: {
-    ...mapGetters({
-      getActiveTemplateElement: "getActiveTemplateElement",
-    }),
-
-    btnStyles() {
-      return {
-        "text-truncate": this.truncateText,
-      };
-    },
-
-    fontSize() {
-      if (this.size == 'sm') {
-        return '14px';
-      } else if (this.size == 'lg') {
-        return '20px';
-      }
-      return '16px';
-    }
-  },
   props: {
+    id: {
+      type: Number,
+      required: true,
+    },
+    text: {
+      type: String,
+      default: 'SIGNUP NOW'
+    },
     truncateText: {
       type: Boolean,
       default: true,
@@ -49,15 +39,38 @@ export default {
     },
     textColor: {
       type: String,
-      default: "light",
+      default: "#FFFFFF",
     },
     bgColor: {
       type: String,
-      default: "secondary",
+      default: "#000000",
     },
-    size: {
-      type: String,
-      default: "md",
+    fontSize: {
+      type: Number,
+      default: 24,
+    },
+    paddingBottom: {
+      type: Number,
+      default: 0,
+    },
+  },
+  computed: {
+    ...mapState(["newPopup", "activeElementId"]),
+    ...mapState({
+      activeElementIndex: (state) =>
+        state.newPopup.children.findIndex(
+          (c) => c.id === state.activeElementId
+        ),
+    }),
+  },
+  methods: {
+    ...mapMutations(["updateActiveElementProperty"]),
+    updateText(e) {
+      const data = {
+        ...this.newPopup.children[this.activeElementIndex],
+        text: e.target.innerText,
+      };
+      this.updateActiveElementProperty(data);
     },
   },
 };

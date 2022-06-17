@@ -70,7 +70,6 @@ export default {
   },
   watch: {
     selectedFont(newValue) {
-        console.log('new value: ', newValue);
       this.setFontSize(newValue);
     },
   },

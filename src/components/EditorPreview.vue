@@ -16,7 +16,11 @@
             :id="element.id"
             :targetElementId="element.id"
           >
-            <TemplateIcons :id="element.id" :color="element.color" />
+            <TemplateIcons
+              :id="element.id"
+              :paddingBottom="element.paddingBottom"
+              :color="element.color"
+            />
           </ActiveElement>
 
           <ActiveElement
@@ -29,6 +33,7 @@
               :id="element.id"
               :fontSize="parseInt(element.fontSize)"
               :color="element.color"
+              :paddingBottom="element.paddingBottom"
             />
           </ActiveElement>
 
@@ -41,6 +46,7 @@
               :id="element.id"
               :fontSize="element.fontSize"
               :placeholder="element.placeholder"
+              :paddingBottom="element.paddingBottom"
             />
           </ActiveElement>
 
@@ -49,7 +55,13 @@
             :id="element.id"
             :targetElementId="element.id"
           >
-            <TemplateButton :id="element.id">SIGNUP NO</TemplateButton>
+            <TemplateButton
+              :id="element.id"
+              :paddingBottom="element.paddingBottom"
+              :fontSize="element.fontSize"
+              :textColor="element.color"
+              :text="element.text"
+              />
           </ActiveElement>
         </template>
       </div>
