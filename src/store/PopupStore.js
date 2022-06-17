@@ -62,7 +62,7 @@ const store = createStore({
     },
 
     resetCanvas(state) {
-      state.newPopup = apiConnect.defaultTemplate;
+      state.newPopup = JSON.parse(JSON.stringify(apiConnect.defaultTemplate));
     }
   },
 
