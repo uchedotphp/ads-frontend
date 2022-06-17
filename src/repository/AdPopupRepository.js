@@ -15,14 +15,14 @@ const defaultTemplate = {
     {
       id: 1,
       type: "icon",
-      color: "#cb3635",
+      color: "#CB3635",
     },
     {
       id: 2,
       type: "text",
       fontSize: "30",
       text: "All text and elements in this popup should be editable and draggable",
-      color: "#ffffff",
+      color: "#FFFFFF",
     },
     {
       id: 3,
@@ -36,14 +36,14 @@ const defaultTemplate = {
       backgroundColor: "#000000",
       label: "SIGNUP NOW",
       truncate: false,
-      color: "#ffffff",
+      color: "#FFFFFF",
     },
     {
       id: 5,
       type: "text",
       fontSize: "15",
       text: "No credit card required. No Surprise",
-      color: "#ffffff",
+      color: "#FFFFFF",
     },
   ],
 };

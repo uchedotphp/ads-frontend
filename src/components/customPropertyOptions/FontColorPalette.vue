@@ -6,21 +6,23 @@
       @click="setBgColor(color)"
       class="btn px-0 col"
     >
-      <div :style="`background-color: ${color}`" class="bgColor"></div>
+      <div :style="`background-color: ${color}`" class="bgColor"
+      :class="{ active: getActiveTemplateElement.color === color }"
+      ></div>
     </button>
   </div>
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapMutations, mapGetters } from "vuex";
 
 export default {
   name: "FontColorPalette",
   data() {
     return {
       colors: [
-        "#e85e5b",
-        "#FF1616",
+        "#E85E5B",
+        "#FFFFFF",
         "#5D18EB",
         "#5DE1E6",
         "#FFBD58",
@@ -39,6 +41,9 @@ export default {
           (c) => c.id === state.activeElementId
         ),
     }),
+    ...mapGetters({
+      getActiveTemplateElement: 'getActiveTemplateElement'
+    })
   },
   methods: {
     ...mapMutations(["updateActiveElementProperty"]),
@@ -64,8 +69,9 @@ export default {
   width: 40px;
   height: 40px;
   border-radius: 2px;
+  border: 1px solid #000000;
   &.active {
-    border: 1px solid #000000;
+    border: 3px solid #000000;
   }
 }
 </style>
