@@ -35,22 +35,15 @@ const store = createStore({
       }
     },
 
-    updateBodyBgColor(state, color) {
-      state.newPopup.backgroundColor = color;
-    },
-
     updateActiveElementProperty(state, d) {
       this.commit("updateElementProperty", { ...d, id: state.activeElementId });
     },
 
     updateElementProperty(state, data) {
       const index = state.newPopup.children.findIndex((e) => e.id === data.id);
-      const element = state.newPopup.children[index];
+      console.log('data: ', [index, data]);
 
-      state.newPopup.children.splice(index, 1, {
-        ...element,
-        [data["key"]]: data["value"],
-      });
+      state.newPopup.children.splice(index, 1, data);
     },
 
     // reIndex(state) {

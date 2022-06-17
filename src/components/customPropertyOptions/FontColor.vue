@@ -1,5 +1,8 @@
 <template>
-  <div class="d-flex flex-column justify-content-center align-items-center">
+  <button
+    @click="openFontColorPalette"
+    class="btn d-flex flex-column justify-content-center align-items-center"
+  >
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
@@ -19,12 +22,33 @@
       alt=""
       srcset=""
     />
-  </div>
+
+  </button>
+    <!-- modal -->
+    <ModalContent id="fontColors">
+      <template #title>
+        <h5 class="fw-semibold">Font colors</h5>
+      </template>
+      <FontColorPalette />
+    </ModalContent>
 </template>
 
 <script>
+import FontColorPalette from './FontColorPalette.vue';
+import ModalContent from "../ModalContent.vue";
+import { Modal } from "bootstrap/dist/js/bootstrap.bundle";
+
 export default {
   name: "FontColor",
+  components: {
+    FontColorPalette,
+    ModalContent,
+  },
+  methods: {
+    openFontColorPalette() {
+      new Modal(document.getElementById("fontColors")).show();
+    },
+  },
 };
 </script>
 
