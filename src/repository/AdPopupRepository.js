@@ -41,7 +41,7 @@ const defaultTemplate = {
       // truncate: false,
       color: "#FFFFFF",
       fontSize: 24,
-      paddingBottom: 0.5,
+      paddingBottom: 0,
     },
     {
       id: 5,
