@@ -1,6 +1,6 @@
 <template>
   <input
-  @input="updateText"
+    @input="updateText"
     type="text"
     class="base-input"
     :placeholder="placeholder"
