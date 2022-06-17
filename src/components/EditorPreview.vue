@@ -31,7 +31,7 @@
             <TemplateText
               :content="element.text"
               :id="element.id"
-              :fontSize="parseInt(element.fontSize)"
+              :fontSize="parseInt(parseInt(element.fontSize))"
               :color="element.color"
               :paddingBottom="element.paddingBottom"
             />
@@ -44,7 +44,7 @@
           >
             <TemplateInput
               :id="element.id"
-              :fontSize="element.fontSize"
+              :fontSize="parseInt(element.fontSize)"
               :placeholder="element.placeholder"
               :paddingBottom="element.paddingBottom"
             />
@@ -58,7 +58,7 @@
             <TemplateButton
               :id="element.id"
               :paddingBottom="element.paddingBottom"
-              :fontSize="element.fontSize"
+              :fontSize="parseInt(element.fontSize)"
               :textColor="element.color"
               :text="element.text"
               />
@@ -120,9 +120,11 @@ export default {
     margin: 10px;
 
     .max-w {
-      max-width: 350px;
+      // max-width: 350px;
+      width: 350px;
       @media (max-width: 767.98px) {
-        max-width: 250px;
+        width: 250px;
+        // max-width: 250px;
       }
     }
   }

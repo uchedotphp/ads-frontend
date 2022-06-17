@@ -14,7 +14,6 @@ import { mapState, mapMutations } from "vuex";
 
 export default {
   name: "TemplateText",
-  emits: ["update:textValue"],
   props: {
     id: {
       type: Number,
@@ -58,11 +57,6 @@ export default {
         text: e.target.innerText,
       };
       this.updateActiveElementProperty(data);
-    },
-    resetLabel() {
-      if (!this.content.length) {
-        this.updateActiveElementProperty({ key: "text", value: "Type a text" });
-      }
     },
   },
 };
