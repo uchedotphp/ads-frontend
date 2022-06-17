@@ -1,30 +1,34 @@
 <template>
   <div class="row">
     <button
-      v-for="color, index in colors"
+      v-for="(color, index) in colors"
       :key="index"
       @click="setBgColor(color)"
       class="btn px-0 col"
     >
-      <div :style="`background-color: ${color}`" class="bgColor"></div>
+      <div
+        :style="`background-color: ${color}`"
+        class="bgColor"
+        :class="{ active: newPopup.backgroundColor === color }"
+      ></div>
     </button>
   </div>
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations, mapGetters } from "vuex";
 
 export default {
   name: "ColorPalette",
   data() {
     return {
       colors: [
-        "#e85e5b",
-        "#FF1616",
+        "#E85E5B",
+        "#FFFFFF",
+        "#000000",
         "#5D18EB",
         "#5DE1E6",
         "#FFBD58",
-        "#5DE1E6",
         "#008038",
         "#5271FF",
         "#ff914d",
@@ -32,19 +36,21 @@ export default {
     };
   },
   computed: {
-      ...mapState(['newPopup'])
+    ...mapState(["newPopup"]),
+    ...mapGetters({
+      getActiveTemplateElement: "getActiveTemplateElement",
+    }),
   },
   methods: {
-      ...mapMutations(['setStates']),
-      setBgColor(color) {
-          console.log('the color: ', color);
-          this.setStates({
-              newPopup: {
-                  ...this.newPopup,
-                  backgroundColor: color
-              }
-          })
-      }
+    ...mapMutations(["setStates"]),
+    setBgColor(color) {
+      this.setStates({
+        newPopup: {
+          ...this.newPopup,
+          backgroundColor: color,
+        },
+      });
+    },
   },
 };
 </script>
@@ -60,8 +66,9 @@ export default {
   width: 40px;
   height: 40px;
   border-radius: 2px;
+  border: 1px solid #000000;
   &.active {
-    border: 1px solid #000000;
+    border: 5px solid #000000;
   }
 }
 </style>
