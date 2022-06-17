@@ -8,7 +8,7 @@
     <!-- modal -->
     <ModalContent id="colorPalette">
       <template #title>
-        <h5 class="fw-semibold">Default colors</h5>
+        <h5 class="fw-semibold">Background colors</h5>
       </template>
       <ColorPalette />
     </ModalContent>
