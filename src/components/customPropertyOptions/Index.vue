@@ -62,6 +62,7 @@ export default {
 
 <style lang="scss" scoped>
 .props {
+  height: 58px;
   background-color: #ffffff;
   padding: 8px 10px;
   width: 100%;
