@@ -1,5 +1,6 @@
 <template>
   <input
+  @input="updateText"
     type="text"
     class="base-input"
     :placeholder="placeholder"
@@ -8,6 +9,8 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from "vuex";
+
 export default {
   name: "TemplateInput",
   props: {
@@ -28,6 +31,25 @@ export default {
       default: 0,
     },
   },
+  computed: {
+    ...mapState(["newPopup", "activeElementId"]),
+    ...mapState({
+      activeElementIndex: (state) =>
+        state.newPopup.children.findIndex(
+          (c) => c.id === state.activeElementId
+        ),
+    }),
+  },
+  methods: {
+    ...mapMutations(["updateActiveElementProperty"]),
+    updateText(e) {
+      const data = {
+        ...this.newPopup.children[this.activeElementIndex],
+        placeholder: e.target.innerText,
+      };
+      this.updateActiveElementProperty(data);
+    },
+  },
 };
 </script>
 
@@ -38,6 +60,7 @@ export default {
   padding: 10px 15px;
   outline: none;
   border: none;
+  color: #a4a6ad;
 }
 
 ::-webkit-input-placeholder {
