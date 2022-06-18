@@ -1,5 +1,5 @@
 import { createStore } from "vuex";
-import apiConnect from "../repository/AdPopupRepository";
+import apiConnect from "../apiService/AdPopupRepository";
 
 // Create a new store instance.
 const store = createStore({
@@ -71,7 +71,7 @@ const store = createStore({
       try {
         const { data } = await apiConnect.getTemplates();
         commit("setStates", {
-          templateHistory: data.popups.data.reverse(),
+          templateHistory: data.popups.data,
         });
       } catch (error) {
         console.log("error occured fetching popups", error);
