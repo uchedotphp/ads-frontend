@@ -7,7 +7,7 @@ export default {
           icon: "bi-layout-text-window",
         },
         {
-          type: "Icons",
+          type: "Icon",
           icon: "bi-stars",
         },
         {
