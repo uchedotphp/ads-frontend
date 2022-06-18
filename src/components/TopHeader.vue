@@ -35,6 +35,7 @@
         </button>
 
         <button
+          @click="copyScript"
           disabled
           type="button"
           class="col-auto btn btn-outline-success ms-3"
@@ -120,6 +121,9 @@ export default {
     },
     reset() {
       this.resetCanvas()
+    },
+    copyScript() {
+      // 
     }
   },
 };
