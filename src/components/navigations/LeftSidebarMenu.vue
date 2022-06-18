@@ -9,7 +9,12 @@
             v-for="(menu, index) in navButtons"
             :key="index"
             :class="[
-              { active: activeMenu === index },
+              {
+                active:
+                  activeMenu === index ||
+                  (getActiveTemplateElement &&
+                    getActiveTemplateElement.type === menu.type.toLowerCase()),
+              },
               'btn d-flex flex-column align-items-center fw-semibold nav-btn',
             ]"
           >
@@ -47,7 +52,7 @@
 <script>
 import ExtraLeftSidebar from "./ExtraLeftSidebar.vue";
 import NavButtons from "../../mixins/NavButtons";
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 
 export default {
   name: "LeftSidebarMenu",
@@ -61,6 +66,9 @@ export default {
   },
   computed: {
     ...mapState(["pageLoading"]),
+    ...mapGetters({
+      getActiveTemplateElement: "getActiveTemplateElement",
+    }),
   },
   methods: {
     selectMenu(index) {
