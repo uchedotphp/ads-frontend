@@ -62,6 +62,7 @@ const store = createStore({
     },
 
     resetCanvas(state) {
+      this.commit("changeActiveElementId", 0);
       state.newPopup = JSON.parse(JSON.stringify(apiConnect.defaultTemplate));
     }
   },
