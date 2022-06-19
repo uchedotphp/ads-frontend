@@ -22,7 +22,7 @@ import LeftSidebarMenu from "../components/navigations/LeftSidebarMenu.vue";
 import BottomNav from "../components/navigations/BottomNav.vue";
 import TopHeader from "../components/TopHeader.vue";
 import EditorPreview from "../components/EditorPreview.vue";
-import PropertyOptions from "../components/customPropertyOptions/Index.vue";
+import PropertyOptions from "../components/toolBar/Index.vue";
 import LoadingSpinner from "../components/LoadingSpinner.vue";
 import { mapState, mapMutations, mapActions } from "vuex";
 
@@ -34,7 +34,7 @@ export default {
     BottomNav,
     EditorPreview,
     PropertyOptions,
-    LoadingSpinner,
+    LoadingSpinner
   },
   computed: {
     ...mapState(["pageLoading"]),

@@ -8,6 +8,22 @@
     @click.stop="activate"
     :class="[{ active: id === activeElementId }, 'active-element']"
   >
+    <div
+      v-if="id === activeElementId"
+      class="drag-handles d-flex justify-content-between"
+    >
+      <i
+        class="bi bi-grip-horizontal text-primary"
+        style="font-size: 1.5rem"
+        role="button"
+      ></i>
+      <i
+        @click.stop="removeFocus"
+        class="bi bi-x-circle-fill text-primary"
+        style="font-size: 1.5rem"
+        role="button"
+      ></i>
+    </div>
     <slot />
   </div>
 </template>
@@ -61,17 +77,34 @@ export default {
         });
       }
     },
+
+    removeFocus() {
+      this.changeActiveElementId(0);
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .active-element {
+  position: relative;
   cursor: pointer;
   border-radius: 8px;
   transition: all 240ms;
+
+  :hover {
+    // outline: 1px dashed #ffffff;
+  }
   &.active {
     outline: 1px dashed #ffffff;
+  }
+
+  .drag-handles {
+    position: absolute;
+    // width: 100%;
+    right: -10px;
+    left: -10px;
+    top: -25px;
   }
 }
 </style>

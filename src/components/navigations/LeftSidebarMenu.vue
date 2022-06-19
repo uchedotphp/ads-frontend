@@ -72,8 +72,8 @@ export default {
   },
   methods: {
     selectMenu(index) {
-      this.activeMenu = index;
       if (index === 0) {
+        // this.activeMenu = index;
         this.openExtraLeftSideMenu = !this.openExtraLeftSideMenu;
       } else {
         this.openExtraLeftSideMenu = false;

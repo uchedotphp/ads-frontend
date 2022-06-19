@@ -17,6 +17,7 @@ const defaultTemplate = {
       type: "icon",
       color: "#CB3635",
       paddingBottom: 0,
+      // paddingBottom: 0,
     },
     {
       id: 2,
@@ -25,6 +26,7 @@ const defaultTemplate = {
       text: "All text and elements in this popup should be editable and draggable",
       color: "#FFFFFF",
       paddingBottom: 0.5,
+      // paddingBottom: 0,
     },
     {
       id: 3,
@@ -32,6 +34,7 @@ const defaultTemplate = {
       fontSize: 12,
       placeholder: "E-mail",
       paddingBottom: 2,
+      // paddingBottom: 0,
     },
     {
       id: 4,
@@ -42,6 +45,7 @@ const defaultTemplate = {
       color: "#FFFFFF",
       fontSize: 24,
       paddingBottom: 0,
+      // paddingBottom: 0,
     },
     {
       id: 5,
@@ -50,6 +54,7 @@ const defaultTemplate = {
       text: "No credit card required. No Surprise",
       color: "#FFFFFF",
       paddingBottom: 5,
+      // paddingBottom: 0,
     },
   ],
 };
